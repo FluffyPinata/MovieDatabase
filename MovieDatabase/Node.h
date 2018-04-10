@@ -1,5 +1,7 @@
 //To be used in conjunction with BSTree.h and BSTree.hpp
 //If you modify this, please add your name and list any changes that you made
+
+//changed KEY to have type KEYTYPE not int
 #ifndef NODE_
 #define NODE_
 #include <iostream>
@@ -21,7 +23,7 @@ struct GeneralData
 template <typename DATATYPE, typename KEYTYPE>
 class Node {
 private:
-    int key; //This should be the datatype of your key...sorted field in tree
+    KEYTYPE key; //This should be the datatype of your key...sorted field in tree
     DATATYPE data;
     Node<DATATYPE, KEYTYPE> * left;
     Node<DATATYPE, KEYTYPE> * right;

@@ -25,10 +25,11 @@ void BSTree<DATATYPE, KEYTYPE>::freeNode(Node<DATATYPE, KEYTYPE> * leaf)
 {
 	//Student must fill in
 	//if the root is the leaf, delete that leaf
-	if (leaf == root) {
+	//this sentence made like no sense ^
+	/*if (leaf == root) {
 		delete leaf;
 		return;
-	}
+	}*/
 	// otherwise if the leaf is not null
 	if (leaf != nullptr) {
 		//recursive call of the leaf's left
@@ -65,20 +66,49 @@ void BSTree<DATATYPE, KEYTYPE>::addNode(KEYTYPE key, Node<DATATYPE, KEYTYPE> * l
 	//Based on the case you use you will addNode recursively to the left or right
  
 	//First check if root is null
-		//make a new node
+	if (Root() == nullptr)
+	{
+		// make a new node
 		//set the key and data
 		//set the root
-	//Otherwise
+		Node<DATATYPE, KEYTYPE> * newNodePtr = new Node<DATATYPE, KEYTYPE>;
+		newNodePtr->setKey(key);
+		newNodePtr->setData(data);
+		root = newNodePtr;
+		root->setParent(root);
+	}
+	else { //Otherwise
 		//Check to see if the key is < the leaf's key
 			// if left is not null then
 				//Add the node to the left (recursively)
 				// Otherwise make a new node and attach it to the left
+		if (key < leaf->key) {
+			if (leaf->left == nullptr) {
+				Node<DATATYPE, KEYTYPE> * newNodePtr = new Node<DATATYPE, KEYTYPE>;
+				newNodePtr->setKey(key);
+				newNodePtr->setData(data);
+				leaf->left = newNodePtr;
+				leaf->left->setParent(leaf);
+			}
+			else {
+				addNode(key, leaf->left, data);
+			}
+		} 
 
 		//Check to see if the key >= leaf's key
 			// if leaf's right is not null then
 				//Add the node to the right (recursively)
 			// Otherwise make new node and attach it to the right
-			
+		else if (key > leaf->key) {
+			if (leaf->right == nullptr) {
+				Node<DATATYPE, KEYTYPE> * newNodePtr = new Node<DATATYPE, KEYTYPE>;
+				newNodePtr->setKey(key);
+				newNodePtr->setData(data);
+				leaf->right = newNodePtr;
+				leaf->right->setParent(leaf);
+			}
+		}
+	}
 }
 
 template <typename DATATYPE, typename KEYTYPE>
