@@ -126,9 +126,22 @@ Node<DATATYPE, KEYTYPE> * BSTree<DATATYPE, KEYTYPE>::findNode(KEYTYPE key, Node<
 {
 	//Student must fill in
 	// trap nullptr first in case we've hit the end unsuccessfully.
+	if (node == nullptr) {
+		return nullptr;
+	}
 	// success base case
+	if (key == node->Key()) {
+		return node;
+	}
+	else {
+		if (key > node->Key()) {
+			findNode(key, node->Left());
+		}
+		else if (key < node->Key()) {
+			findNode(key, node->Right());
+		}
+	}
 	//Greater than (Right), Less than (Left)
-	
 }
 
 template <typename DATATYPE, typename KEYTYPE>
