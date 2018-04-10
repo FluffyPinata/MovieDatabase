@@ -154,6 +154,12 @@ template <typename DATATYPE, typename KEYTYPE>
 void BSTree<DATATYPE, KEYTYPE>::printInorder(Node<DATATYPE, KEYTYPE> * node)
 {
 	//Student must fill in.  Use recursive algorithm.
+	if (node == nullptr) { //base case of nullptr
+		return;
+	}
+	printInorder(node->Left());
+	std::cout << node->Key() << std::endl; //note.. should this be data or key?
+	printInorder(node->Right());
 	//Note that this prints using an Inorder, Depth-first search
 	//but you may want to do something else when "visiting" the node....
 	//like moving visited data to another datastructure
