@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="functions.cpp" />
     <ClCompile Include="MovieDatabase.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -161,6 +162,7 @@
     <ClInclude Include="Actor.h" />
     <ClInclude Include="BSTree.h" />
     <ClInclude Include="BSTree.hpp" />
+    <ClInclude Include="functions.h" />
     <ClInclude Include="Node.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
