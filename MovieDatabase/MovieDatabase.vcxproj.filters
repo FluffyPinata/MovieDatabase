@@ -21,6 +21,9 @@
     <ClCompile Include="Actor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BSTDriver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="actor-actress.csv">
@@ -34,10 +37,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BinarySearchTree.h">
+    <ClInclude Include="Actor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Actor.h">
+    <ClInclude Include="BSTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BSTree.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

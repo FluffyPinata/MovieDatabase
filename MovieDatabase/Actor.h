@@ -22,6 +22,7 @@ public:
 	void setFilm(std::string _film) { film = _film; }
 	bool getWinner() { return winner; }
 	void setWinner(bool _winner) { winner = _winner; }
+	friend bool operator <(Actor a, Actor b);
 };
 
 #endif
