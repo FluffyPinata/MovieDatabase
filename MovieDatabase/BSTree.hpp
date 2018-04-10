@@ -25,11 +25,19 @@ void BSTree<DATATYPE, KEYTYPE>::freeNode(Node<DATATYPE, KEYTYPE> * leaf)
 {
 	//Student must fill in
 	//if the root is the leaf, delete that leaf
+	if (leaf == root) {
+		delete leaf;
+		return;
+	}
 	// otherwise if the leaf is not null
+	if (leaf != nullptr) {
 		//recursive call of the leaf's left
+		freeNode(leaf->left);
 		//recursive call of the leaf's right
+		freeNode(leaf->right);
 		//now delete the leaf
-    
+		delete leaf;
+	}
 }
 
 // Add a node
