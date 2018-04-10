@@ -82,16 +82,16 @@ void BSTree<DATATYPE, KEYTYPE>::addNode(KEYTYPE key, Node<DATATYPE, KEYTYPE> * l
 			// if left is not null then
 				//Add the node to the left (recursively)
 				// Otherwise make a new node and attach it to the left
-		if (key < leaf->key) {
-			if (leaf->left == nullptr) {
+		if (key < leaf->Key()) {
+			if (leaf->Left() == nullptr) {
 				Node<DATATYPE, KEYTYPE> * newNodePtr = new Node<DATATYPE, KEYTYPE>;
 				newNodePtr->setKey(key);
 				newNodePtr->setData(data);
-				leaf->left = newNodePtr;
-				leaf->left->setParent(leaf);
+				leaf->setLeft(newNodePtr);
+				leaf->Left()->setParent(leaf);
 			}
 			else {
-				addNode(key, leaf->left, data);
+				addNode(key, leaf->Left(), data);
 			}
 		} 
 
@@ -99,13 +99,16 @@ void BSTree<DATATYPE, KEYTYPE>::addNode(KEYTYPE key, Node<DATATYPE, KEYTYPE> * l
 			// if leaf's right is not null then
 				//Add the node to the right (recursively)
 			// Otherwise make new node and attach it to the right
-		else if (key > leaf->key) {
-			if (leaf->right == nullptr) {
+		else if (key > leaf->Key()) {
+			if (leaf->Right() == nullptr) {
 				Node<DATATYPE, KEYTYPE> * newNodePtr = new Node<DATATYPE, KEYTYPE>;
 				newNodePtr->setKey(key);
 				newNodePtr->setData(data);
-				leaf->right = newNodePtr;
-				leaf->right->setParent(leaf);
+				leaf->setRight(newNodePtr);
+				leaf->Right()->setParent(leaf);
+			}
+			else {
+				addNode(key, leaf->Right(), data);
 			}
 		}
 	}
