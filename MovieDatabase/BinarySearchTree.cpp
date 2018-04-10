@@ -1,5 +1,6 @@
 #include "BinarySearchTree.h"
 
-BinarySearchTree::BinarySearchTree() {
+template <class T>
+BinarySearchTree<T>::BinarySearchTree() {
 
 }

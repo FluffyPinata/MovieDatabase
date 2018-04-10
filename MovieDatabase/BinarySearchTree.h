@@ -1,10 +1,18 @@
 #ifndef BINARYSEARCHTREE_H
 #define BINARYSEARCHTREE_H
 
-template <class T>; // Created this as a template so we can use this for all types of data
+#include <iostream>
+
+template <class T> 
 class BinarySearchTree {
 private:
+	struct BSTNode {
+		T data;
+		BSTNode * left;
+		BSTNode * right;
+	};
 
+	BSTNode * rootNode;
 public:
 	BinarySearchTree();
 };

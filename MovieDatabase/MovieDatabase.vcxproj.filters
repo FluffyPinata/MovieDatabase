@@ -18,5 +18,24 @@
     <ClCompile Include="MovieDatabase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BinarySearchTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="actor-actress.csv">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="nominations.csv">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pictures.csv">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BinarySearchTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
