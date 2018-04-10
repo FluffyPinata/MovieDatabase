@@ -5,7 +5,7 @@
 void readActors(BSTree<Actor, string > *&tree) {
 	std::ifstream infile("actor-actress.csv");
 	std::string junk, line;
-	getline(infile, junk); 
+	getline(infile, junk);
 
 	while (getline(infile, line)) {
 		std::stringstream ss(line);
