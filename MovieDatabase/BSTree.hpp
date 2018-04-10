@@ -26,12 +26,12 @@ void BSTree<DATATYPE, KEYTYPE>::freeNode(Node<DATATYPE, KEYTYPE> * leaf)
 	//Student must fill in
 	//if the root is the leaf, delete that leaf
 	//this sentence made like no sense ^
-	/*if (leaf == root) {
+	if (leaf == nullptr) {
 		delete leaf;
 		return;
-	}*/
+	}
 	// otherwise if the leaf is not null
-	if (leaf != nullptr) {
+	else if (leaf != nullptr) {
 		//recursive call of the leaf's left
 		freeNode(leaf->left);
 		//recursive call of the leaf's right
@@ -157,9 +157,9 @@ void BSTree<DATATYPE, KEYTYPE>::printInorder(Node<DATATYPE, KEYTYPE> * node)
 	if (node == nullptr) { //base case of nullptr
 		return;
 	}
-	printInorder(node->Left());
+	printInorder(node->Left()); //Dive down the left side of the tree first since those are the lowest values
 	std::cout << node->Key() << std::endl; //note.. should this be data or key?
-	printInorder(node->Right());
+	printInorder(node->Right()); //Dive down the right side last since they're the largest values
 	//Note that this prints using an Inorder, Depth-first search
 	//but you may want to do something else when "visiting" the node....
 	//like moving visited data to another datastructure
