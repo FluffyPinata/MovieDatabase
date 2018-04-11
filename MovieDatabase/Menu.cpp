@@ -1,8 +1,12 @@
-#include "functions.h"
+#include "Menu.h"
 #include <fstream>
 #include <sstream>
 
-void readActors(BSTree<Actor, string > *&tree) {
+Menu::Menu() {
+	actorTree = new BSTree<Actor, string>();
+}
+
+void Menu::readActors() {
 	std::ifstream infile("actor-actress.csv");
 	std::string junk, line;
 	getline(infile, junk);
@@ -10,7 +14,7 @@ void readActors(BSTree<Actor, string > *&tree) {
 	while (getline(infile, line)) {
 		std::stringstream ss(line);
 		std::string name, award, film, yearS, winnerS; //we need to convert the last two to int and bool
-		
+
 		getline(ss, yearS, ',');
 		getline(ss, award, ',');
 		getline(ss, winnerS, ',');
@@ -30,6 +34,8 @@ void readActors(BSTree<Actor, string > *&tree) {
 
 		Actor tempActor(year, name, award, film, winner);
 
-		tree->addNode(name, tempActor);
+		actorTree->addNode(name, tempActor);
 	}
 }
+
+
