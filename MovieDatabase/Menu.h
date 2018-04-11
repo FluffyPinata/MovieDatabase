@@ -14,6 +14,7 @@ private:
 public:
 	Menu();
 	void readActors();
+	void readMovies();
 };
 
 #endif

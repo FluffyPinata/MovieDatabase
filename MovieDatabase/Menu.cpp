@@ -39,4 +39,50 @@ void Menu::readActors() {
 	}
 }
 
+void Menu::readMovies() {
+	std::ifstream infile("pictures.csv");
+	std::string junk, line;
+	getline(infile, junk);
+
+	while (getline(infile, line)) {
+		std::stringstream ss(line);
+		std::string name, genre1, genre2, release, synopsis, yearS, nominationsS, durationS, metacriticS, ratingS;
+		int year, nominations, duration, metacritic;
+		double rating;
+
+		getline(ss, name, ',');
+		getline(ss, yearS, ',');
+		getline(ss, nominationsS, ',');
+		getline(ss, ratingS, ',');
+		getline(ss, durationS, ',');
+		getline(ss, genre1, ',');
+		getline(ss, genre2, ',');
+		getline(ss, release, ',');
+		getline(ss, metacriticS, ',');
+		getline(ss, synopsis, ',');
+
+		year = stoi(yearS);
+		try {
+			nominations = stoi(nominationsS);
+		}
+		catch (std::invalid_argument) {
+			//std::cout << "No nominations entered, defaulting to 0." << std::endl;
+			nominations = 0;
+		}
+		duration = stoi(durationS);
+		try {
+			metacritic = stoi(metacriticS);
+		}
+		catch (std::invalid_argument) {
+			//std::cout << "No metacritic score, defaulting to -1." << std::endl;
+			metacritic = -1;
+		}
+		rating = stod(ratingS);
+
+		Movie tempMovie(name, genre1, genre2, release, synopsis, year, nominations, duration, metacritic, rating);
+
+		movieTree->addNode(name, tempMovie);
+	}
+}
+
 
