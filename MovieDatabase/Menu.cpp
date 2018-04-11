@@ -37,6 +37,7 @@ void Menu::readActors() {
 
 		actorTree->addNode(name, tempActor);
 	}
+	infile.close();
 }
 
 void Menu::readMovies() {
@@ -83,6 +84,7 @@ void Menu::readMovies() {
 
 		movieTree->addNode(name, tempMovie);
 	}
+	infile.close();
 }
 
 void Menu::printInOrderActors() {
