@@ -4,6 +4,7 @@
 
 Menu::Menu() {
 	actorTree = new BSTree<Actor, string>();
+	movieTree = new BSTree<Movie, string>();
 }
 
 void Menu::readActors() {
