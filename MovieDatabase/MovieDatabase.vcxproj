@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Movie.cpp" />
     <ClCompile Include="MovieDatabase.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -163,6 +164,7 @@
     <ClInclude Include="BSTree.h" />
     <ClInclude Include="BSTree.hpp" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="Movie.h" />
     <ClInclude Include="Node.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
