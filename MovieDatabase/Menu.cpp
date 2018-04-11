@@ -85,4 +85,11 @@ void Menu::readMovies() {
 	}
 }
 
+void Menu::printInOrderActors() {
+	actorTree->printInorder();
+}
+
+void Menu::printInOrderMovies() {
+	movieTree->printInorder();
+}
 

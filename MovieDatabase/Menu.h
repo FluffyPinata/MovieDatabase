@@ -15,6 +15,8 @@ public:
 	Menu();
 	void readActors();
 	void readMovies();
+	void printInOrderActors();
+	void printInOrderMovies();
 };
 
 #endif
