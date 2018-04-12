@@ -35,6 +35,7 @@ void Menu::runMenu() {
 			addRecordActors();
 			break;
 		case 4:
+			addRecordMovies();
 			break;
 		case 5:
 			printInOrderActors();
@@ -105,6 +106,8 @@ void Menu::readMovies() {
 		getline(ss, metacriticS, ',');
 		getline(ss, synopsis, ',');
 
+		name = name.substr(1, name.size());
+
 		year = stoi(yearS);
 		try {
 			nominations = stoi(nominationsS);
@@ -171,6 +174,7 @@ void Menu::addRecordActors() {
 }
 
 void Menu::addRecordMovies() {
+	std::cin.ignore();
 	std::cout << "Please enter in the following information for a movie:" << std::endl;
 	std::string name, genre1, genre2, release, synopsis;
 	int year, nominations, duration, metacritic;
