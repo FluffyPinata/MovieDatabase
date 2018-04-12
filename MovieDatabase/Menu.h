@@ -17,6 +17,8 @@ public:
 	void readMovies();
 	void printInOrderActors();
 	void printInOrderMovies();
+	void addRecordActors();
+	void addRecordMovies();
 };
 
 #endif

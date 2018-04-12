@@ -95,3 +95,36 @@ void Menu::printInOrderMovies() {
 	movieTree->printInorder();
 }
 
+void Menu::addRecordActors() {
+	std::cout << "Please enter in the following information for an actor/actress and their nomination:" << std::endl;
+	int year, winnerI;
+	std::string award, name, film;
+	bool winner;
+	
+	std::cout << "Year of nomination: " << std::endl;
+	std::cin >> year;
+	std::cin.ignore();
+
+	std::cout << "What award were they nominated for?" << std::endl;
+	getline(std::cin, award);
+
+	std::cout << "What is their name?" << std::endl;
+	getline(std::cin, name);
+
+	std::cout << "What film did they star in?" << std::endl;
+	getline(std::cin, film);
+
+	std::cout << "Did they win the award? (Type 1 for yes, 0 for no)" << std::endl;
+	std::cin >> winnerI;
+
+	if (winnerI == 1)
+		winner = true;
+	else if (winnerI == 0)
+		winner = false;
+
+	Actor newActor(year, name, award, film, winner);
+
+	actorTree->addNode(name, newActor);
+}
+
+
