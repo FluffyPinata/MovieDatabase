@@ -215,4 +215,11 @@ void Menu::addRecordMovies() {
 	movieTree->addNode(name, newMovie);
 }
 
+bool Menu::searchAndModifyActor() {
+	std::cin.ignore();
+	std::cout << "Which actor would you like to search for? Please enter a name." << std::endl;
+	std::string searchName;
+	getline(std::cin, searchName);
+}
+
 

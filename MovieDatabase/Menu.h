@@ -20,6 +20,7 @@ public:
 	void printInOrderMovies();
 	void addRecordActors();
 	void addRecordMovies();
+	bool searchAndModifyActor();
 };
 
 #endif
