@@ -170,4 +170,45 @@ void Menu::addRecordActors() {
 	actorTree->addNode(name, newActor);
 }
 
+void Menu::addRecordMovies() {
+	std::cout << "Please enter in the following information for a movie:" << std::endl;
+	std::string name, genre1, genre2, release, synopsis;
+	int year, nominations, duration, metacritic;
+	double rating;
+
+	std::cout << "Movie name: " << std::endl;
+	getline(std::cin, name);
+
+	std::cout << "Movie's 1st genre: " << std::endl;
+	getline(std::cin, genre1);
+
+	std::cout << "Movie's 2nd genre: " << std::endl;
+	getline(std::cin, genre2);
+
+	std::cout << "Movie's release month: " << std::endl;
+	getline(std::cin, release);
+
+	std::cout << "Movie's synopsis: " << std::endl;
+	getline(std::cin, synopsis);
+
+	std::cout << "Year the movie came out in: " << std::endl;
+	std::cin >> year;
+
+	std::cout << "Number of nominations: " << std::endl;
+	std::cin >> nominations;
+
+	std::cout << "Duration in minutes: " << std::endl;
+	std::cin >> duration;
+
+	std::cout << "Metacritic score: " << std::endl;
+	std::cin >> metacritic;
+
+	std::cout << "Movie rating: " << std::endl;
+	std::cin >> rating;
+
+	Movie newMovie(name, genre1, genre2, release, synopsis, year, nominations, duration, metacritic, rating);
+
+	movieTree->addNode(name, newMovie);
+}
+
 
