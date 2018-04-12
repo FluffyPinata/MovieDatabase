@@ -7,6 +7,49 @@ Menu::Menu() {
 	movieTree = new BSTree<Movie, string>();
 }
 
+void Menu::runMenu() {
+	bool keepGoing = true;
+	while (keepGoing) {
+		int option;
+		std::cout << "What option would you like to choose? (type the number)" << std::endl;
+		std::cout << "1. Read in actor list." << std::endl;
+		std::cout << "2. Read in movie list." << std::endl;
+		std::cout << "3. Add an actor to the actor list." << std::endl;
+		std::cout << "4. Add a movie to the movie list." << std::endl;
+		std::cout << "5. Display the actor list by name." << std::endl;
+		std::cout << "6. Display the movie list by name." << std::endl;
+		std::cout << "10. Quit the game." << std::endl << std::endl;
+
+		std::cin >> option;
+
+		switch (option) {
+		case 1:
+			std::cout << "Reading in the actor list..." << std::endl;
+			readActors();
+			break;
+		case 2:
+			std::cout << "Reading in the movie list..." << std::endl;
+			readMovies();
+			break;
+		case 3:
+			addRecordActors();
+			break;
+		case 4:
+			break;
+		case 5:
+			printInOrderActors();
+			break;
+		case 6:
+			printInOrderMovies();
+			break;
+		case 10:
+			std::cout << "Exiting the program..." << std::endl;
+			keepGoing = false;
+			break;
+		}
+	}
+}
+
 void Menu::readActors() {
 	std::ifstream infile("actor-actress.csv");
 	std::string junk, line;

@@ -13,6 +13,7 @@ private:
 
 public:
 	Menu();
+	void runMenu();
 	void readActors();
 	void readMovies();
 	void printInOrderActors();
