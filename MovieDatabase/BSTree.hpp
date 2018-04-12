@@ -134,10 +134,10 @@ Node<DATATYPE, KEYTYPE> * BSTree<DATATYPE, KEYTYPE>::findNode(KEYTYPE key, Node<
 		return node;
 	}
 	else {
-		if (key > node->Key()) {
+		if (key < node->Key()) {
 			findNode(key, node->Left());
 		}
-		else if (key < node->Key()) {
+		else if (key > node->Key()) {
 			findNode(key, node->Right());
 		}
 	}

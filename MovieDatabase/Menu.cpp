@@ -18,6 +18,7 @@ void Menu::runMenu() {
 		std::cout << "4. Add a movie to the movie list." << std::endl;
 		std::cout << "5. Display the actor list by name." << std::endl;
 		std::cout << "6. Display the movie list by name." << std::endl;
+		std::cout << "7. Search and modify an actor." << std::endl;
 		std::cout << "10. Quit the game." << std::endl << std::endl;
 
 		std::cin >> option;
@@ -42,6 +43,9 @@ void Menu::runMenu() {
 			break;
 		case 6:
 			printInOrderMovies();
+			break;
+		case 7:
+			searchAndModifyActor();
 			break;
 		case 10:
 			std::cout << "Exiting the program..." << std::endl;
@@ -220,6 +224,12 @@ bool Menu::searchAndModifyActor() {
 	std::cout << "Which actor would you like to search for? Please enter a name." << std::endl;
 	std::string searchName;
 	getline(std::cin, searchName);
+
+	Node<Actor, string> *foundNodePtr = actorTree->findNode(searchName);
+	if (foundNodePtr == nullptr) {
+		std::cout << "We couldn't find an actor with that name." << std::endl;
+		return false;
+	}
 }
 
 
