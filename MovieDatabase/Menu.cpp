@@ -222,7 +222,7 @@ void Menu::addRecordMovies() {
 bool Menu::searchAndModifyActor() {
 	std::cin.ignore();
 	std::cout << "Which actor would you like to search for? Please enter a name." << std::endl;
-	std::string searchName;
+	std::string searchName, newName;
 	getline(std::cin, searchName);
 
 	Node<Actor, string> *foundNodePtr = actorTree->findNode(searchName);
@@ -230,6 +230,15 @@ bool Menu::searchAndModifyActor() {
 		std::cout << "We couldn't find an actor with that name." << std::endl;
 		return false;
 	}
+
+	std::cout << "Please enter a new name for the actor:" << std::endl;
+	getline(std::cin, newName);
+
+	Actor tempActor = foundNodePtr->Data();
+	tempActor.setName(newName);
+
+	foundNodePtr->setData(tempActor);
+	foundNodePtr->setKey(newName);
 }
 
 
