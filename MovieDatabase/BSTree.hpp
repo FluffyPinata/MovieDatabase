@@ -135,10 +135,10 @@ Node<DATATYPE, KEYTYPE> * BSTree<DATATYPE, KEYTYPE>::findNode(KEYTYPE key, Node<
 	}
 	else {
 		if (key < node->Key()) {
-			findNode(key, node->Left());
+			return findNode(key, node->Left());
 		}
 		else if (key > node->Key()) {
-			findNode(key, node->Right());
+			return findNode(key, node->Right());
 		}
 	}
 	//Greater than (Right), Less than (Left)
