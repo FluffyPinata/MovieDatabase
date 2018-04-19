@@ -198,7 +198,7 @@ Node<DATATYPE, KEYTYPE> * BSTree<DATATYPE, KEYTYPE>::deleteNode(Node<DATATYPE, K
 	// If the key to be deleted is greater than the root's key,
 	// then it lies in right subtree
 	else if (value > aRoot->Key())
-		root->setRight(deleteNode(aRoot->Right(), value));
+		aRoot->setRight(deleteNode(aRoot->Right(), value));
 
 	// if key is same as root's key, then This is the node
 	// to be deleted
