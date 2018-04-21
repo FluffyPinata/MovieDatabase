@@ -85,6 +85,7 @@ void Menu::readActors() {
 
 		Actor tempActor(year, name, award, film, winner);
 
+		actorData.push_back(tempActor);
 		actorTree->addNode(name, tempActor);
 	}
 	infile.close();
@@ -134,6 +135,7 @@ void Menu::readMovies() {
 
 		Movie tempMovie(name, genre1, genre2, release, synopsis, year, nominations, duration, metacritic, rating);
 
+		movieData.push_back(tempMovie);
 		movieTree->addNode(name, tempMovie);
 	}
 	infile.close();
@@ -176,6 +178,7 @@ void Menu::addRecordActors() {
 
 	Actor newActor(year, name, award, film, winner);
 
+	actorData.push_back(newActor);
 	actorTree->addNode(name, newActor);
 }
 
@@ -218,6 +221,7 @@ void Menu::addRecordMovies() {
 
 	Movie newMovie(name, genre1, genre2, release, synopsis, year, nominations, duration, metacritic, rating);
 
+	movieData.push_back(newMovie);
 	movieTree->addNode(name, newMovie);
 }
 

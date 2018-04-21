@@ -12,6 +12,8 @@ enum currentTreeActor { actName, actAward, actFilm, actYear, actWinner };
 class Menu {
 private:
 	currentTreeActor cTa = actName; //used for selecting which tree to operate on after a potential sort
+	std::vector<Actor> actorData;
+	std::vector<Movie> movieData;
 	BSTree<Actor, string> *actorTree;
 	BSTree<Actor, int> *actorTreeInt;
 	BSTree<Actor, bool> *actorTreeBool;
