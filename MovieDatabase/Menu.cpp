@@ -4,6 +4,8 @@
 
 Menu::Menu() {
 	actorTree = new BSTree<Actor, string>();
+	actorTreeInt = new BSTree<Actor, int>();
+	actorTreeBool = new BSTree<Actor, bool>();
 	movieTree = new BSTree<Movie, string>();
 }
 
@@ -237,6 +239,11 @@ bool Menu::searchAndModifyActor() { //not working currently
 		std::cout << "We couldn't find an actor with that name." << std::endl;
 		return false;
 	}
+}
+
+void Menu::sortTreeActor() {
+
+
 }
 
 

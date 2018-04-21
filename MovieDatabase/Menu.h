@@ -9,6 +9,8 @@
 class Menu {
 private:
 	BSTree<Actor, string> *actorTree;
+	BSTree<Actor, int> *actorTreeInt;
+	BSTree<Actor, bool> *actorTreeBool;
 	BSTree<Movie, string> *movieTree;
 
 public:
@@ -21,6 +23,7 @@ public:
 	void addRecordActors();
 	void addRecordMovies();
 	bool searchAndModifyActor();
+	void sortTreeActor();
 };
 
 #endif
