@@ -8,6 +8,7 @@
 
 class Menu {
 private:
+	enum currentTreeActor { actName, actAward, actFilm, actYear, actWinner };
 	BSTree<Actor, string> *actorTree;
 	BSTree<Actor, int> *actorTreeInt;
 	BSTree<Actor, bool> *actorTreeBool;

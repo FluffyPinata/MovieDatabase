@@ -242,7 +242,30 @@ bool Menu::searchAndModifyActor() { //not working currently
 }
 
 void Menu::sortTreeActor() {
+	std::cout << "Which parameter would you like to sort the actor tree by?" << std::endl;
+	std::cout << "1. Name" << std::endl;
+	std::cout << "2. Award" << std::endl;
+	std::cout << "3. Film" << std::endl;
+	std::cout << "4. Year" << std::endl;
+	std::cout << "5. Winner?" << std::endl;
 
+	int selection = 0;
+	std::cin >> selection;
+
+	switch (selection) {
+	case 1:
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	case 5:
+		break;
+	default:
+		break;
+	}
 
 }
 
