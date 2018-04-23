@@ -19,6 +19,12 @@ BSTree<DATATYPE, KEYTYPE>::~BSTree() {
         freeNode(root);
 }
 
+template <typename DATATYPE, typename KEYTYPE>
+void BSTree<DATATYPE, KEYTYPE>::clear() {
+	if (root != nullptr)
+		freeNode(root);
+}
+
 // Free the node
 template <typename DATATYPE, typename KEYTYPE>
 void BSTree<DATATYPE, KEYTYPE>::freeNode(Node<DATATYPE, KEYTYPE> * leaf)
@@ -33,9 +39,9 @@ void BSTree<DATATYPE, KEYTYPE>::freeNode(Node<DATATYPE, KEYTYPE> * leaf)
 	// otherwise if the leaf is not null
 	else if (leaf != nullptr) {
 		//recursive call of the leaf's left
-		freeNode(leaf->left);
+		freeNode(leaf->Left());
 		//recursive call of the leaf's right
-		freeNode(leaf->right);
+		freeNode(leaf->Right());
 		//now delete the leaf
 		delete leaf;
 	}

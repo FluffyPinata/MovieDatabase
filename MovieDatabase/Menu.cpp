@@ -259,6 +259,11 @@ void Menu::sortTreeActor() {
 
 	switch (selection) {
 	case 1:
+		cTa = actName;
+		actorTree->clear();
+		for (int i = 0; i < actorData.size(); i++) {
+			actorTree->addNode(actorData[i].getName(), actorData[i]);
+		}
 		break;
 	case 2:
 		break;
