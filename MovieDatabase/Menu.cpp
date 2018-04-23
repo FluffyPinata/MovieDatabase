@@ -21,6 +21,7 @@ void Menu::runMenu() {
 		std::cout << "5. Display the actor list by name." << std::endl;
 		std::cout << "6. Display the movie list by name." << std::endl;
 		std::cout << "7. Search and modify an actor." << std::endl;
+		std::cout << "8. Sort actor tree." << std::endl;
 		std::cout << "10. Quit the game." << std::endl << std::endl;
 
 		std::cin >> option;
@@ -48,6 +49,9 @@ void Menu::runMenu() {
 			break;
 		case 7:
 			searchAndModifyActor();
+			break;
+		case 8:
+			sortTreeActor();
 			break;
 		case 10:
 			std::cout << "Exiting the program..." << std::endl;
@@ -260,7 +264,7 @@ void Menu::sortTreeActor() {
 	switch (selection) {
 	case 1:
 		cTa = actName;
-		actorTree->clear();
+		delete actorTree;
 		for (int i = 0; i < actorData.size(); i++) {
 			actorTree->addNode(actorData[i].getName(), actorData[i]);
 		}

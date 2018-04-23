@@ -20,7 +20,6 @@ private:
 public:
     BSTree<DATATYPE, KEYTYPE>();
     ~BSTree<DATATYPE, KEYTYPE>();
-	void clear();
     Node<DATATYPE, KEYTYPE> * Root() { return root; }
     void setRoot(Node<DATATYPE, KEYTYPE> * _root) {root = _root;}
     void addNode(KEYTYPE key, DATATYPE &data);
