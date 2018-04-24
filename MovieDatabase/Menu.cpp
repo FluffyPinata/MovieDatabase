@@ -378,9 +378,40 @@ void Menu::sortTreeActor() {
 		}
 		break;
 	case 4:
+		if ((cTa == actName) || (cTa == actAward) || (cTa == actFilm)) {
+			delete actorTree;
+			actorTree = new BSTree<Actor, string>();
+		}
+		else if (cTa == actYear) {
+			delete actorTreeInt;
+			actorTreeInt = new BSTree<Actor, int>();
+		}
+		else {
+			delete actorTreeBool;
+			actorTreeBool = new BSTree<Actor, bool>();
+		}
 		cTa = actYear;
+		for (int i = 0; i < actorData.size(); i++) { // n complexity
+			actorTreeInt->addNode(actorData[i].getYear(), actorData[i]);
+		}
 		break;
 	case 5:
+		if ((cTa == actName) || (cTa == actAward) || (cTa == actFilm)) {
+			delete actorTree;
+			actorTree = new BSTree<Actor, string>();
+		}
+		else if (cTa == actYear) {
+			delete actorTreeInt;
+			actorTreeInt = new BSTree<Actor, int>();
+		}
+		else {
+			delete actorTreeBool;
+			actorTreeBool = new BSTree<Actor, bool>();
+		}
+		cTa = actWinner;
+		for (int i = 0; i < actorData.size(); i++) { // n complexity
+			actorTreeBool->addNode(actorData[i].getWinner(), actorData[i]);
+		}
 		break;
 	default:
 		break;
