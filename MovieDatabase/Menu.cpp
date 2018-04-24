@@ -64,6 +64,8 @@ void Menu::runMenu() {
 }
 
 void Menu::readActors() {
+	
+
 	std::ifstream infile("actor-actress.csv");
 	std::string junk, line;
 	getline(infile, junk);
@@ -92,8 +94,12 @@ void Menu::readActors() {
 		Actor tempActor(year, name, award, film, winner);
 
 		actorData.push_back(tempActor);
-		if ((cTa == actName) || (cTa == actAward) || (cTa = actFilm))
+		if (cTa == actName)
 			actorTree->addNode(name, tempActor);
+		else if (cTa == actAward)
+			actorTree->addNode(award, tempActor);
+		else if (cTa == actFilm)
+			actorTree->addNode(film, tempActor);
 		else if (cTa == actYear)
 			actorTreeInt->addNode(year, tempActor);
 		else
@@ -147,7 +153,27 @@ void Menu::readMovies() {
 		Movie tempMovie(name, genre1, genre2, release, synopsis, year, nominations, duration, metacritic, rating);
 
 		movieData.push_back(tempMovie);
-		movieTree->addNode(name, tempMovie);
+		//sorry this is ugly
+		if (cTm == movName)
+			movieTree->addNode(name, tempMovie);
+		else if (cTm == movGenre1)
+			movieTree->addNode(genre1, tempMovie);
+		else if (cTm == movGenre2)
+			movieTree->addNode(genre2, tempMovie);
+		else if (cTm == movRelease)
+			movieTree->addNode(release, tempMovie);
+		else if (cTm == movSynopsis)
+			movieTree->addNode(synopsis, tempMovie);
+		else if (cTm == movYear)
+			movieTreeInt->addNode(year, tempMovie);
+		else if (cTm == movNominations)
+			movieTreeInt->addNode(nominations, tempMovie);
+		else if (cTm == movDuration)
+			movieTreeInt->addNode(duration, tempMovie);
+		else if (cTm == movMetacritic)
+			movieTreeInt->addNode(metacritic, tempMovie);
+		else if (cTm == movRating)
+			movieTreeDouble->addNode(rating, tempMovie);
 	}
 	infile.close();
 }
@@ -190,8 +216,12 @@ void Menu::addRecordActors() {
 	Actor newActor(year, name, award, film, winner);
 
 	actorData.push_back(newActor);
-	if ((cTa == actName) || (cTa == actAward) || (cTa = actFilm))
+	if (cTa == actName)
 		actorTree->addNode(name, newActor);
+	else if (cTa == actAward)
+		actorTree->addNode(award, newActor);
+	else if (cTa == actFilm)
+		actorTree->addNode(film, newActor);
 	else if (cTa == actYear)
 		actorTreeInt->addNode(year, newActor);
 	else
@@ -238,7 +268,26 @@ void Menu::addRecordMovies() {
 	Movie newMovie(name, genre1, genre2, release, synopsis, year, nominations, duration, metacritic, rating);
 
 	movieData.push_back(newMovie); //one of the string trees
-	movieTree->addNode(name, newMovie);
+	if (cTm == movName)
+		movieTree->addNode(name, newMovie);
+	else if (cTm == movGenre1)
+		movieTree->addNode(genre1, newMovie);
+	else if (cTm == movGenre2)
+		movieTree->addNode(genre2, newMovie);
+	else if (cTm == movRelease)
+		movieTree->addNode(release, newMovie);
+	else if (cTm == movSynopsis)
+		movieTree->addNode(synopsis, newMovie);
+	else if (cTm == movYear)
+		movieTreeInt->addNode(year, newMovie);
+	else if (cTm == movNominations)
+		movieTreeInt->addNode(nominations, newMovie);
+	else if (cTm == movDuration)
+		movieTreeInt->addNode(duration, newMovie);
+	else if (cTm == movMetacritic)
+		movieTreeInt->addNode(metacritic, newMovie);
+	else if (cTm == movRating)
+		movieTreeDouble->addNode(rating, newMovie);
 		
 }
 
