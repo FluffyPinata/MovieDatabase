@@ -183,7 +183,12 @@ void Menu::addRecordActors() {
 	Actor newActor(year, name, award, film, winner);
 
 	actorData.push_back(newActor);
-	actorTree->addNode(name, newActor);
+	if ((cTa == actName) || (cTa == actAward) || (cTa = actFilm))
+		actorTree->addNode(name, newActor);
+	else if (cTa == actYear)
+		actorTreeInt->addNode(year, newActor);
+	else
+		actorTreeBool->addNode(year, newActor);
 }
 
 void Menu::addRecordMovies() {
@@ -225,8 +230,9 @@ void Menu::addRecordMovies() {
 
 	Movie newMovie(name, genre1, genre2, release, synopsis, year, nominations, duration, metacritic, rating);
 
-	movieData.push_back(newMovie);
+	movieData.push_back(newMovie); //one of the string trees
 	movieTree->addNode(name, newMovie);
+		
 }
 
 bool Menu::searchAndModifyActor() { //not working currently
@@ -279,6 +285,12 @@ void Menu::sortTreeActor() {
 		}
 		break;
 	case 3:
+		cTa = actFilm;
+		delete actorTree; // n complexity
+		actorTree->setRoot(nullptr);
+		for (int i = 0; i < actorData.size(); i++) { // n complexity
+			actorTree->addNode(actorData[i].getFilm(), actorData[i]);
+		}
 		break;
 	case 4:
 		break;
