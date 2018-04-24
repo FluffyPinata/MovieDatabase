@@ -265,11 +265,15 @@ void Menu::sortTreeActor() {
 	case 1:
 		cTa = actName;
 		delete actorTree;
+		actorTree->setRoot(nullptr); // I can't figure out how to do this properly in the destructor so I'm doing it here
 		for (int i = 0; i < actorData.size(); i++) {
 			actorTree->addNode(actorData[i].getName(), actorData[i]);
 		}
 		break;
 	case 2:
+		cTa = actAward;
+		delete actorTree;
+		actorTree->setRoot(nullptr);
 		break;
 	case 3:
 		break;

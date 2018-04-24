@@ -24,18 +24,14 @@ template <typename DATATYPE, typename KEYTYPE>
 void BSTree<DATATYPE, KEYTYPE>::freeNode(Node<DATATYPE, KEYTYPE> * leaf)
 {
 	//Student must fill in
-	//if the root is the leaf, delete that leaf
-	
-	//this sentence made like no sense ^
-	// otherwise if the leaf is not null
 	if (leaf != nullptr) {
-		//recursive call of the leaf's left
 		freeNode(leaf->Left());
-		//recursive call of the leaf's right
 		freeNode(leaf->Right());
-		//now delete the leaf
+
 		delete leaf;
+		leaf = nullptr;
 	}
+
 }
 
 // Add a node
