@@ -272,8 +272,11 @@ void Menu::sortTreeActor() {
 		break;
 	case 2:
 		cTa = actAward;
-		delete actorTree;
+		delete actorTree; // n complexity
 		actorTree->setRoot(nullptr);
+		for (int i = 0; i < actorData.size(); i++) { // n complexity
+			actorTree->addNode(actorData[i].getAward(), actorData[i]);
+		}
 		break;
 	case 3:
 		break;

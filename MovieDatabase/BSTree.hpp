@@ -92,7 +92,7 @@ void BSTree<DATATYPE, KEYTYPE>::addNode(KEYTYPE key, Node<DATATYPE, KEYTYPE> * l
 			// if leaf's right is not null then
 				//Add the node to the right (recursively)
 			// Otherwise make new node and attach it to the right
-		else if (key > leaf->Key()) {
+		else if (key >= leaf->Key()) {
 			if (leaf->Right() == nullptr) {
 				Node<DATATYPE, KEYTYPE> * newNodePtr = new Node<DATATYPE, KEYTYPE>;
 				newNodePtr->setKey(key);
