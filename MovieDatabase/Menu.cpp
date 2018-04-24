@@ -64,8 +64,6 @@ void Menu::runMenu() {
 }
 
 void Menu::readActors() {
-	
-
 	std::ifstream infile("actor-actress.csv");
 	std::string junk, line;
 	getline(infile, junk);
@@ -325,30 +323,62 @@ void Menu::sortTreeActor() {
 
 	switch (selection) {
 	case 1:
+		//Delete the previous tree
+		if ((cTa == actName) || (cTa == actAward) || (cTa == actFilm)) {
+			delete actorTree;
+			actorTree = new BSTree<Actor, string>();
+		}
+		else if (cTa == actYear) {
+			delete actorTreeInt;
+			actorTreeInt = new BSTree<Actor, int>();
+		}
+		else {
+			delete actorTreeBool;
+			actorTreeBool = new BSTree<Actor, bool>();
+		}
 		cTa = actName;
-		delete actorTree;
-		actorTree->setRoot(nullptr); // I can't figure out how to do this properly in the destructor so I'm doing it here
 		for (int i = 0; i < actorData.size(); i++) {
 			actorTree->addNode(actorData[i].getName(), actorData[i]);
 		}
 		break;
 	case 2:
+		if ((cTa == actName) || (cTa == actAward) || (cTa == actFilm)) {
+			delete actorTree;
+			actorTree = new BSTree<Actor, string>();
+		}
+		else if (cTa == actYear) {
+			delete actorTreeInt;
+			actorTreeInt = new BSTree<Actor, int>();
+		}
+		else {
+			delete actorTreeBool;
+			actorTreeBool = new BSTree<Actor, bool>();
+		}
 		cTa = actAward;
-		delete actorTree; // n complexity
-		actorTree->setRoot(nullptr);
 		for (int i = 0; i < actorData.size(); i++) { // n complexity
 			actorTree->addNode(actorData[i].getAward(), actorData[i]);
 		}
 		break;
 	case 3:
+		if ((cTa == actName) || (cTa == actAward) || (cTa == actFilm)) {
+			delete actorTree;
+			actorTree = new BSTree<Actor, string>();
+		}
+		else if (cTa == actYear) {
+			delete actorTreeInt;
+			actorTreeInt = new BSTree<Actor, int>();
+		}
+		else {
+			delete actorTreeBool;
+			actorTreeBool = new BSTree<Actor, bool>();
+		}
 		cTa = actFilm;
-		delete actorTree; // n complexity
-		actorTree->setRoot(nullptr);
 		for (int i = 0; i < actorData.size(); i++) { // n complexity
 			actorTree->addNode(actorData[i].getFilm(), actorData[i]);
 		}
 		break;
 	case 4:
+		cTa = actYear;
 		break;
 	case 5:
 		break;
