@@ -7,6 +7,8 @@ Menu::Menu() {
 	actorTreeInt = new BSTree<Actor, int>();
 	actorTreeBool = new BSTree<Actor, bool>();
 	movieTree = new BSTree<Movie, string>();
+	movieTreeInt = new BSTree<Movie, int>();
+	movieTreeDouble = new BSTree<Movie, double>();
 }
 
 void Menu::runMenu() {
@@ -90,7 +92,12 @@ void Menu::readActors() {
 		Actor tempActor(year, name, award, film, winner);
 
 		actorData.push_back(tempActor);
-		actorTree->addNode(name, tempActor);
+		if ((cTa == actName) || (cTa == actAward) || (cTa = actFilm))
+			actorTree->addNode(name, tempActor);
+		else if (cTa == actYear)
+			actorTreeInt->addNode(year, tempActor);
+		else
+			actorTreeBool->addNode(winner, tempActor);
 	}
 	infile.close();
 }
@@ -188,7 +195,7 @@ void Menu::addRecordActors() {
 	else if (cTa == actYear)
 		actorTreeInt->addNode(year, newActor);
 	else
-		actorTreeBool->addNode(year, newActor);
+		actorTreeBool->addNode(winner, newActor);
 }
 
 void Menu::addRecordMovies() {
