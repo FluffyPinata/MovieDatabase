@@ -323,91 +323,35 @@ void Menu::sortTreeActor() {
 
 	switch (selection) {
 	case 1:
-		//Delete the previous tree
-		if ((cTa == actName) || (cTa == actAward) || (cTa == actFilm)) {
-			delete actorTree;
-			actorTree = new BSTree<Actor, string>();
-		}
-		else if (cTa == actYear) {
-			delete actorTreeInt;
-			actorTreeInt = new BSTree<Actor, int>();
-		}
-		else {
-			delete actorTreeBool;
-			actorTreeBool = new BSTree<Actor, bool>();
-		}
+		deleteCurrentTree();
 		cTa = actName;
 		for (int i = 0; i < actorData.size(); i++) {
 			actorTree->addNode(actorData[i].getName(), actorData[i]);
 		}
 		break;
 	case 2:
-		if ((cTa == actName) || (cTa == actAward) || (cTa == actFilm)) {
-			delete actorTree;
-			actorTree = new BSTree<Actor, string>();
-		}
-		else if (cTa == actYear) {
-			delete actorTreeInt;
-			actorTreeInt = new BSTree<Actor, int>();
-		}
-		else {
-			delete actorTreeBool;
-			actorTreeBool = new BSTree<Actor, bool>();
-		}
+		deleteCurrentTree();
 		cTa = actAward;
 		for (int i = 0; i < actorData.size(); i++) { // n complexity
 			actorTree->addNode(actorData[i].getAward(), actorData[i]);
 		}
 		break;
 	case 3:
-		if ((cTa == actName) || (cTa == actAward) || (cTa == actFilm)) {
-			delete actorTree;
-			actorTree = new BSTree<Actor, string>();
-		}
-		else if (cTa == actYear) {
-			delete actorTreeInt;
-			actorTreeInt = new BSTree<Actor, int>();
-		}
-		else {
-			delete actorTreeBool;
-			actorTreeBool = new BSTree<Actor, bool>();
-		}
+		deleteCurrentTree();
 		cTa = actFilm;
 		for (int i = 0; i < actorData.size(); i++) { // n complexity
 			actorTree->addNode(actorData[i].getFilm(), actorData[i]);
 		}
 		break;
 	case 4:
-		if ((cTa == actName) || (cTa == actAward) || (cTa == actFilm)) {
-			delete actorTree;
-			actorTree = new BSTree<Actor, string>();
-		}
-		else if (cTa == actYear) {
-			delete actorTreeInt;
-			actorTreeInt = new BSTree<Actor, int>();
-		}
-		else {
-			delete actorTreeBool;
-			actorTreeBool = new BSTree<Actor, bool>();
-		}
+		deleteCurrentTree();
 		cTa = actYear;
 		for (int i = 0; i < actorData.size(); i++) { // n complexity
 			actorTreeInt->addNode(actorData[i].getYear(), actorData[i]);
 		}
 		break;
 	case 5:
-		if ((cTa == actName) || (cTa == actAward) || (cTa == actFilm)) {
-			delete actorTree;
-			actorTree = new BSTree<Actor, string>();
-		}
-		else if (cTa == actYear) {
-			delete actorTreeInt;
-			actorTreeInt = new BSTree<Actor, int>();
-		}
-		else {
-			delete actorTreeBool;
-			actorTreeBool = new BSTree<Actor, bool>();
-		}
+		deleteCurrentTree();
 		cTa = actWinner;
 		for (int i = 0; i < actorData.size(); i++) { // n complexity
 			actorTreeBool->addNode(actorData[i].getWinner(), actorData[i]);
@@ -419,6 +363,19 @@ void Menu::sortTreeActor() {
 
 }
 
-
+void Menu::deleteCurrentTree() {
+	if ((cTa == actName) || (cTa == actAward) || (cTa == actFilm)) {
+		delete actorTree;
+		actorTree = new BSTree<Actor, string>();
+	}
+	else if (cTa == actYear) {
+		delete actorTreeInt;
+		actorTreeInt = new BSTree<Actor, int>();
+	}
+	else {
+		delete actorTreeBool;
+		actorTreeBool = new BSTree<Actor, bool>();
+	}
+}
 
 

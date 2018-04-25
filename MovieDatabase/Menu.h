@@ -35,6 +35,7 @@ public:
 	void addRecordMovies();
 	bool searchAndModifyActor();
 	void sortTreeActor();
+	void deleteCurrentTree();
 };
 
 #endif
