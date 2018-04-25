@@ -299,22 +299,12 @@ void Menu::addRecordMovies() {
 
 bool Menu::searchAndModifyActor() { //not working currently
 	std::cin.ignore();
-	std::cout << "Which actor would you like to search for? Please enter a name." << std::endl;
-	std::string searchName, newName;
-	getline(std::cin, searchName);
+	int fieldChoice = 0;
+	std::cout << "Which field would you like to search? (type the number)" << std::endl;
 
-	Node<Actor, std::string> *foundNodePtr = actorTree->findNode(searchName);
+	std::cin >> fieldChoice;
 
-	if (foundNodePtr != nullptr) {
-		std::cout << "Please enter a new name for the actor:" << std::endl;
-		getline(std::cin, newName);
-
-		return true;
-	}
-	else {
-		std::cout << "We couldn't find an actor with that name." << std::endl;
-		return false;
-	}
+	std::cout << "What would you like to search for?" << std::endl;
 }
 
 

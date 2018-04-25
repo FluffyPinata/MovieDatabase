@@ -17,11 +17,6 @@ Actor::Actor(int _year, std::string _name, std::string _award, std::string _film
 }
 
 std::ostream& operator<<(std::ostream& os, const Actor& a) {
-	os << "---------" << std::endl;
-	os << "Name: " << a.name << std::endl;
-	os << "Award: " << a.award << std::endl;
-	os << "Film: " << a.film << std::endl;
-	os << "Year: " << a.year << std::endl;
-	os << "Winner?: " << a.winner << std::endl;
+	os << a.year << "," << a.award << "," << a.winner << "," << a.name << "," << a.film << std::endl;
 	return os;
 }

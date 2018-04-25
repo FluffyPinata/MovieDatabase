@@ -20,14 +20,6 @@ Movie::Movie(std::string _name, std::string _genre1, std::string _genre2, std::s
 }
 
 std::ostream& operator<<(std::ostream& os, const Movie& m) {
-	os << "---------" << std::endl;
-	os << "Name: " << m.name << std::endl;
-	os << "Genres: " << m.genre1 << " " << m.genre2 << std::endl;
-	os << "Release: " << m.year << " " << m.release << std::endl;
-	os << "Nominations: " << m.nominations << std::endl;
-	os << "Duration: " << m.duration << std::endl;
-	os << "Metacritic score: " << m.metacritic << std::endl;
-	os << "Rating: " << m.rating << std::endl;
-	os << "Synopsis: " << m.synopsis << std::endl;
+	os << m.name << "," << m.year << "," << m.nominations << "," << m.rating << "," << m.duration << "," << m.genre1 << "," << m.genre2 << "," << m.release << "," << m.metacritic << "," << m.synopsis << std::endl;
 	return os;
 }
