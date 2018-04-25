@@ -151,7 +151,7 @@ void BSTree<DATATYPE, KEYTYPE>::printInorder(Node<DATATYPE, KEYTYPE> * node)
 		return;
 	}
 	printInorder(node->Left()); //Dive down the left side of the tree first since those are the lowest values
-	std::cout << node->Key() << std::endl; //note.. should this be data or key?
+	std::cout << node->Data() << std::endl; //note.. should this be data or key?
 	printInorder(node->Right()); //Dive down the right side last since they're the largest values
 	//Note that this prints using an Inorder, Depth-first search
 	//but you may want to do something else when "visiting" the node....

@@ -20,8 +20,8 @@ void Menu::runMenu() {
 		std::cout << "2. Read in movie list." << std::endl;
 		std::cout << "3. Add an actor to the actor list." << std::endl;
 		std::cout << "4. Add a movie to the movie list." << std::endl;
-		std::cout << "5. Display the actor list by name." << std::endl;
-		std::cout << "6. Display the movie list by name." << std::endl;
+		std::cout << "5. Display the actor list by current key." << std::endl;
+		std::cout << "6. Display the movie list by current key" << std::endl;
 		std::cout << "7. Search and modify an actor." << std::endl;
 		std::cout << "8. Sort actor tree." << std::endl;
 		std::cout << "10. Quit the game." << std::endl << std::endl;
