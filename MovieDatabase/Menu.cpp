@@ -177,7 +177,15 @@ void Menu::readMovies() {
 }
 
 void Menu::printInOrderActors() {
-	actorTree->printInorder();
+	if ((cTa == actName) || (cTa == actAward) || (cTa == actFilm)) {
+		actorTree->printInorder();
+	}
+	else if (cTa == actYear) {
+		actorTreeInt->printInorder();
+	}
+	else {
+		actorTreeBool->printInorder();
+	}
 }
 
 void Menu::printInOrderMovies() {
@@ -363,7 +371,7 @@ void Menu::sortTreeActor() {
 
 }
 
-void Menu::deleteCurrentTree() {
+void Menu::deleteCurrentTree() { //picks the current stored tree and deletes it
 	if ((cTa == actName) || (cTa == actAward) || (cTa == actFilm)) {
 		delete actorTree;
 		actorTree = new BSTree<Actor, string>();
