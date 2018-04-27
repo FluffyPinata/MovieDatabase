@@ -50,7 +50,7 @@ void Menu::runMenu() {
 			printInOrderMovies();
 			break;
 		case 7:
-			searchAndModifyActor();
+			searchActor();
 			break;
 		case 8:
 			sortTreeActor();
@@ -297,14 +297,33 @@ void Menu::addRecordMovies() {
 		
 }
 
-bool Menu::searchAndModifyActor() { //not working currently
+bool Menu::searchActor() { //not working currently
 	std::cin.ignore();
 	int fieldChoice = 0;
 	std::cout << "Which field would you like to search? (type the number)" << std::endl;
+	std::cout << "1. Name" << std::endl;
+	std::cout << "2. Award" << std::endl;
+	std::cout << "3. Film" << std::endl;
+	std::cout << "4. Year" << std::endl;
+
 
 	std::cin >> fieldChoice;
+	switch (fieldChoice) {
+	case 1:
+		exactSearchActor(fieldChoice);
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	default:
+		break;
+	}
 
-	std::cout << "What would you like to search for?" << std::endl;
+	//std::cout << "What would you like to search for?" << std::endl;
+	return true;
 }
 
 
@@ -375,5 +394,66 @@ void Menu::deleteCurrentTree() { //picks the current stored tree and deletes it
 		actorTreeBool = new BSTree<Actor, bool>();
 	}
 }
+
+void Menu::exactSearchActor(int choice) {
+	std::string searchString;
+	int searchYear;
+	std::cin.ignore();
+	switch (choice) {
+		case 1:
+			std::cout << "Please enter the string you'd like to perform an exact search on." << std::endl;
+			getline(std::cin, searchString);
+			for (int i = 0; i < actorData.size(); i++) {
+				if (actorData[i].getName() == searchString) {
+					modifyRecordActor(actorData[i]);
+				}
+			}
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		default:
+			break;
+	}
+}
+
+void Menu::modifyRecordActor(Actor &a) {
+	std::string choice;
+	int modifierI;
+	std::string modifier;
+	std::cout << "Would you like to change the name of the actor?" << std::endl;
+	cin.ignore();
+	getline(std::cin, choice);
+	if (choice == "yes") {
+		std::cout << "Change it to what?" << std::endl;
+		getline(std::cin, modifier);
+		a.setName(modifier);
+	}
+	std::cout << "Would you like to change the award of the actor?" << std::endl;
+	getline(std::cin, choice);
+	if (choice == "yes") {
+		std::cout << "Change it to what?" << std::endl;
+		getline(std::cin, modifier);
+		a.setAward(modifier);
+	}
+	std::cout << "Would you like to change the film of the actor?" << std::endl;
+	getline(std::cin, choice);
+	if (choice == "yes") {
+		std::cout << "Change it to what?" << std::endl;
+		getline(std::cin, modifier);
+		a.setFilm(modifier);
+	}
+	std::cout << "Would you like to change the year of the actor?" << std::endl;
+	getline(std::cin, choice);
+	if (choice == "yes") {
+		std::cout << "Change it to what?" << std::endl;
+		std::cin >> modifierI;
+		a.setYear(modifierI);
+	}
+}
+
 
 

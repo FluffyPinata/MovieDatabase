@@ -33,8 +33,11 @@ public:
 	void printInOrderMovies();
 	void addRecordActors();
 	void addRecordMovies();
-	bool searchAndModifyActor();
+	bool searchActor();
 	void sortTreeActor();
+	void exactSearchActor(int choice);
+	void partialSearchActor();
+	void modifyRecordActor(Actor &a);
 	void deleteCurrentTree();
 };
 
