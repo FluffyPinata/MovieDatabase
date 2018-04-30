@@ -421,11 +421,28 @@ void Menu::exactSearchActor(int choice) {
 }
 
 void Menu::modifyRecordActor(Actor &a) {
+	//Initially delete the node from the list 
+	if (cTa == actName) {
+		actorTree->deleteNode(a.getName());
+	}
+	else if (cTa == actAward) {
+		actorTree->deleteNode(a.getAward());
+	}
+	else if (cTa == actFilm) {
+		actorTree->deleteNode(a.getFilm());
+	}
+	else if (cTa == actYear) {
+		actorTreeInt->deleteNode(a.getYear());
+	}
+	else {
+		actorTreeBool->deleteNode(a.getWinner());
+	}
+
+	//Obtain all the information about the new node from the user and modify our current data
 	std::string choice;
 	int modifierI;
 	std::string modifier;
 	std::cout << "Would you like to change the name of the actor?" << std::endl;
-	cin.ignore();
 	getline(std::cin, choice);
 	if (choice == "yes") {
 		std::cout << "Change it to what?" << std::endl;
@@ -452,6 +469,24 @@ void Menu::modifyRecordActor(Actor &a) {
 		std::cout << "Change it to what?" << std::endl;
 		std::cin >> modifierI;
 		a.setYear(modifierI);
+	}
+
+
+	//Pick which tree is currently active and re-add the modified one to the list.
+	if (cTa == actName) {
+		actorTree->addNode(a.getName(), a);
+	}
+	else if (cTa == actAward) {
+		actorTree->addNode(a.getAward(), a);
+	}
+	else if (cTa == actFilm) {
+		actorTree->addNode(a.getFilm(), a);
+	}
+	else if (cTa == actYear) {
+		actorTreeInt->addNode(a.getYear(), a);
+	}
+	else {
+		actorTreeBool->addNode(a.getWinner(), a);
 	}
 }
 
