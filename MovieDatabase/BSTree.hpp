@@ -5,6 +5,8 @@
 /*Template Directions: #include "BSTREEInt.hpp"
 but do NOT compile it (or add it to the project)*/
 #include "BSTree.h"
+#include <fstream>
+#include <iostream>
 
 // Constructor
 template <typename DATATYPE, typename KEYTYPE>
@@ -257,3 +259,19 @@ Node<DATATYPE, KEYTYPE> * BSTree<DATATYPE, KEYTYPE>::max(Node<DATATYPE, KEYTYPE>
 
 	return tempNode;
 }
+
+template <typename DATATYPE, typename KEYTYPE>
+void BSTree<DATATYPE, KEYTYPE>::writeToFile(std::ofstream &outfile) {
+	writeToFile(outfile, root);
+}
+
+template <typename DATATYPE, typename KEYTYPE>
+void BSTree<DATATYPE, KEYTYPE>::writeToFile(std::ofstream &outfile, Node<DATATYPE, KEYTYPE> * node) {
+	if (node == nullptr) { //base case of nullptr
+		return;
+	}
+	writeToFile(outfile, node->Left()); //Dive down the left side of the tree first since those are the lowest values
+	outfile << node->Data();
+	writeToFile(outfile, node->Right()); //Dive down the right side last since they're the largest values
+}
+

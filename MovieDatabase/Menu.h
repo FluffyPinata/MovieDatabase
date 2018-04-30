@@ -37,6 +37,7 @@ public:
 	void sortTreeActor();
 	void exactSearchActor(int choice);
 	void partialSearchActor();
+	bool isContained();
 	void modifyRecordActor(Actor &a);
 	void deleteCurrentTree();
 };

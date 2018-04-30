@@ -12,6 +12,7 @@ Menu::Menu() {
 }
 
 void Menu::runMenu() {
+	std::ofstream outfile("output.csv");
 	bool keepGoing = true;
 	while (keepGoing) {
 		int option;
@@ -24,7 +25,9 @@ void Menu::runMenu() {
 		std::cout << "6. Display the movie list by current key" << std::endl;
 		std::cout << "7. Search and modify an actor." << std::endl;
 		std::cout << "8. Sort actor tree." << std::endl;
-		std::cout << "10. Quit the game." << std::endl << std::endl;
+		std::cout << "9. Write actor tree to file." << std::endl;
+		std::cout << "10. Quit the game." << std::endl;
+		std::cout << "11. Write movie tree to file." << std::endl;
 
 		std::cin >> option;
 
@@ -55,9 +58,33 @@ void Menu::runMenu() {
 		case 8:
 			sortTreeActor();
 			break;
+		case 9:
+			outfile << "YEAR,AWARD,WINNER,NAME,FILM" << std::endl;
+			if ((cTa == actName) || (cTa == actAward) || (cTa == actFilm)) {
+				actorTree->writeToFile(outfile);
+			}
+			else if (cTa == actYear) {
+				actorTreeInt->writeToFile(outfile);
+			}
+			else {
+				actorTreeBool->writeToFile(outfile);
+			}
+			break;
 		case 10:
 			std::cout << "Exiting the program..." << std::endl;
 			keepGoing = false;
+			break;
+		case 11:
+			outfile << "name,year,nominations,rating,duration,genre1,genre2,release,metacritic,synopsis" << std::endl;
+			if ((cTm == movName) || (cTm == movGenre1) || (cTm == movGenre2) || (cTm == movRelease) || (cTm == movSynopsis)) {
+				movieTree->writeToFile(outfile);
+			}
+			else if ((cTm == movYear) || (cTm == movNominations) || (cTm == movDuration) || (cTm == movMetacritic)) {
+				movieTreeInt->writeToFile(outfile);
+			}
+			else if (cTm == movRating) {
+				movieTreeDouble->writeToFile(outfile);
+			}
 			break;
 		}
 	}
@@ -328,6 +355,7 @@ bool Menu::searchActor() { //not working currently
 
 
 void Menu::sortTreeActor() {
+	//Ask for which key the user would like to sort the tree by.
 	std::cout << "Which parameter would you like to sort the actor tree by?" << std::endl;
 	std::cout << "1. Name" << std::endl;
 	std::cout << "2. Award" << std::endl;
@@ -338,6 +366,8 @@ void Menu::sortTreeActor() {
 	int selection = 0;
 	std::cin >> selection;
 
+	//Based on which tree is currently being used, that tree will have it's memory freed and then a 
+	//new one will be filled with the selected key.
 	switch (selection) {
 	case 1:
 		deleteCurrentTree();
@@ -488,6 +518,10 @@ void Menu::modifyRecordActor(Actor &a) {
 	else {
 		actorTreeBool->addNode(a.getWinner(), a);
 	}
+}
+
+bool Menu::isContained() {
+	return true;
 }
 
 
