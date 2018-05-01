@@ -335,19 +335,7 @@ bool Menu::searchActor() {
 
 
 	std::cin >> fieldChoice;
-	switch (fieldChoice) {
-	case 1:
-		exactSearchActor(fieldChoice);
-		break;
-	case 2:
-		break;
-	case 3:
-		break;
-	case 4:
-		break;
-	default:
-		break;
-	}
+	exactSearchActor(fieldChoice);
 
 	//std::cout << "What would you like to search for?" << std::endl;
 	return true;
@@ -429,14 +417,16 @@ void Menu::exactSearchActor(int choice) {
 	std::string searchString;
 	int searchYear;
 	std::string modDelChoice;
-	std::cin.ignore();
+	//std::cin.ignore();
 	switch (choice) {
-		case 1:
-			std::cout << "Please enter the string you'd like to perform an exact search on." << std::endl;
+		case 1: //Name
+			std::cout << "Please enter the name you'd like to perform an exact search on." << std::endl;
 			getline(std::cin, searchString);
 			for (int i = 0; i < actorData.size(); i++) { // Loop through the actorDatabase vector
 				if (actorData[i].getName() == searchString) { //Check if any of the fields match the name
-					std::cout << "Would you like to delete or modify this record?" << std::endl;
+					std::cout << "Found this record: " << std::endl;
+					std::cout << actorData[i];
+					std::cout << "Would you like to delete or modify this record? (type modify or delete)" << std::endl;
 					getline(std::cin, modDelChoice);
 					if (modDelChoice == "modify") {
 						modifyRecordActor(actorData[i]);
@@ -448,11 +438,62 @@ void Menu::exactSearchActor(int choice) {
 				}
 			}
 			break;
-		case 2:
+		case 2: // Search award
+			std::cout << "Please enter the award you'd like to perform an exact search on." << std::endl;
+			getline(std::cin, searchString);
+			for (int i = 0; i < actorData.size(); i++) { // Loop through the actorDatabase vector
+				if (actorData[i].getAward() == searchString) { //Check if any of the fields match the award
+					std::cout << "Found this record: " << std::endl;
+					std::cout << actorData[i];
+					std::cout << "Would you like to delete or modify this record? (type modify or delete)" << std::endl;
+					getline(std::cin, modDelChoice);
+					if (modDelChoice == "modify") {
+						modifyRecordActor(actorData[i]);
+					}
+					else if (modDelChoice == "delete") {
+						actorData.erase(actorData.begin() + i);
+						deleteRecordActor(actorData[i]);
+					}
+				}
+			}
 			break;
 		case 3:
+			std::cout << "Please enter the film you'd like to perform an exact search on." << std::endl;
+			getline(std::cin, searchString);
+			for (int i = 0; i < actorData.size(); i++) { // Loop through the actorDatabase vector
+				if (actorData[i].getFilm() == searchString) { //Check if any of the fields match the award
+					std::cout << "Found this record: " << std::endl;
+					std::cout << actorData[i];
+					std::cout << "Would you like to delete or modify this record? (type modify or delete)" << std::endl;
+					getline(std::cin, modDelChoice);
+					if (modDelChoice == "modify") {
+						modifyRecordActor(actorData[i]);
+					}
+					else if (modDelChoice == "delete") {
+						actorData.erase(actorData.begin() + i);
+						deleteRecordActor(actorData[i]);
+					}
+				}
+			}
 			break;
 		case 4:
+			std::cout << "Please enter the year you'd like to perform an exact search on." << std::endl;
+			std::cin >> searchYear;
+			for (int i = 0; i < actorData.size(); i++) { // Loop through the actorDatabase vector
+				if (actorData[i].getYear() == searchYear) { //Check if any of the fields match the award
+					std::cout << "Found this record: " << std::endl;
+					std::cout << actorData[i];
+					std::cout << "Would you like to delete or modify this record? (type modify or delete)" << std::endl;
+					getline(std::cin, modDelChoice);
+					if (modDelChoice == "modify") {
+						modifyRecordActor(actorData[i]);
+					}
+					else if (modDelChoice == "delete") {
+						actorData.erase(actorData.begin() + i);
+						deleteRecordActor(actorData[i]);
+					}
+				}
+			}
 			break;
 		default:
 			break;
