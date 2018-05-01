@@ -324,7 +324,7 @@ void Menu::addRecordMovies() {
 		
 }
 
-bool Menu::searchActor() { //not working currently
+bool Menu::searchActor() { 
 	std::cin.ignore();
 	int fieldChoice = 0;
 	std::cout << "Which field would you like to search? (type the number)" << std::endl;
@@ -428,14 +428,23 @@ void Menu::deleteCurrentTree() { //picks the current stored tree and deletes it
 void Menu::exactSearchActor(int choice) {
 	std::string searchString;
 	int searchYear;
+	std::string modDelChoice;
 	std::cin.ignore();
 	switch (choice) {
 		case 1:
 			std::cout << "Please enter the string you'd like to perform an exact search on." << std::endl;
 			getline(std::cin, searchString);
-			for (int i = 0; i < actorData.size(); i++) {
-				if (actorData[i].getName() == searchString) {
-					modifyRecordActor(actorData[i]);
+			for (int i = 0; i < actorData.size(); i++) { // Loop through the actorDatabase vector
+				if (actorData[i].getName() == searchString) { //Check if any of the fields match the name
+					std::cout << "Would you like to delete or modify this record?" << std::endl;
+					getline(std::cin, modDelChoice);
+					if (modDelChoice == "modify") {
+						modifyRecordActor(actorData[i]);
+					}
+					else if (modDelChoice == "delete") {
+						actorData.erase(actorData.begin() + i);
+						deleteRecordActor(actorData[i]);
+					}
 				}
 			}
 			break;
@@ -463,9 +472,6 @@ void Menu::modifyRecordActor(Actor &a) {
 	}
 	else if (cTa == actYear) {
 		actorTreeInt->deleteNode(a.getYear());
-	}
-	else {
-		actorTreeBool->deleteNode(a.getWinner());
 	}
 
 	//Obtain all the information about the new node from the user and modify our current data
@@ -515,8 +521,20 @@ void Menu::modifyRecordActor(Actor &a) {
 	else if (cTa == actYear) {
 		actorTreeInt->addNode(a.getYear(), a);
 	}
-	else {
-		actorTreeBool->addNode(a.getWinner(), a);
+}
+
+void Menu::deleteRecordActor(Actor a) { //Removes the actor data from the list
+	if (cTa == actName) {
+		actorTree->deleteNode(a.getName());
+	}
+	else if (cTa == actAward) {
+		actorTree->deleteNode(a.getAward());
+	}
+	else if (cTa == actFilm) {
+		actorTree->deleteNode(a.getFilm());
+	}
+	else if (cTa == actYear) {
+		actorTreeInt->deleteNode(a.getYear());
 	}
 }
 

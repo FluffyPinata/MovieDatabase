@@ -39,6 +39,7 @@ public:
 	void partialSearchActor();
 	bool isContained();
 	void modifyRecordActor(Actor &a);
+	void deleteRecordActor(Actor a);
 	void deleteCurrentTree();
 };
 
