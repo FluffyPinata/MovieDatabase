@@ -26,7 +26,7 @@ void Menu::runMenu() {
 		std::cout << "7. Search and modify an actor." << std::endl;
 		std::cout << "8. Sort actor tree." << std::endl;
 		std::cout << "9. Write actor tree to file." << std::endl;
-		std::cout << "10. Quit the game." << std::endl;
+		std::cout << "10. Quit the program." << std::endl;
 		std::cout << "11. Write movie tree to file." << std::endl;
 
 		std::cin >> option;
@@ -336,14 +336,19 @@ bool Menu::searchActor() {
 
 	std::cin >> fieldChoice;
 
-	std::cout << "Would you like to perform a partial or exact search?" << std::endl;
-	std::string searchChoice;
-	std::cin.ignore();
-	getline(std::cin, searchChoice);
-	if (searchChoice == "partial") {
-		partialSearchActor(fieldChoice);
+	if (fieldChoice != 4) { //Can't partial search on a year
+		std::cout << "Would you like to perform a partial or exact search?" << std::endl;
+		std::string searchChoice;
+		std::cin.ignore();
+		getline(std::cin, searchChoice);
+		if (searchChoice == "partial") {
+			partialSearchActor(fieldChoice);
+		}
+		else if (searchChoice == "exact") {
+			exactSearchActor(fieldChoice);
+		}
 	}
-	else if (searchChoice == "exact") {
+	else {
 		exactSearchActor(fieldChoice);
 	}
 
@@ -423,88 +428,113 @@ void Menu::deleteCurrentTree() { //picks the current stored tree and deletes it
 	}
 }
 
-void Menu::exactSearchActor(int choice) {
+void Menu::exactSearchActor(int choice) { //Searches are exact, based on if the search exactly matches the parameter
 	std::string searchString;
-	bool keepSearching = false;
+	//bool keepSearching = false;
 	int searchYear;
 	std::string modDelChoice;
-	std::cin.ignore();
-	switch (choice) {
+	//std::cin.ignore();
+	switch (choice) { //Switches the parameter of the search
 		case 1: //Name
 			std::cout << "Please enter the name you'd like to perform an exact search on." << std::endl;
 			getline(std::cin, searchString);
 			for (int i = 0; i < actorData.size(); i++) { // Loop through the actorDatabase vector
 				if (actorData[i].getName() == searchString) { //Check if any of the fields match the name
-					std::cout << "Found this record: " << std::endl;
-					std::cout << actorData[i];
-					std::cout << "Would you like to delete or modify this record? (type modify or delete)" << std::endl;
-					getline(std::cin, modDelChoice);
-					if (modDelChoice == "modify") {
-						modifyRecordActor(actorData[i]);
-					}
-					else if (modDelChoice == "delete") {
-						actorData.erase(actorData.begin() + i);
-						deleteRecordActor(actorData[i]);
-					}
+					actorData[i].setTempPos(i); // Set the position of the data in the main vector so we can delete it in our delete function.
+					tempSortActorData.push_back(actorData[i]); // Add the data to a temporary vector in case we want to re-search the data.
 				}
 			}
+			if (tempSortActorData.size() != 0) { // If it actually found anything from that search
+				std::cout << "Found these records:" << std::endl;
+				for (int j = 0; j < tempSortActorData.size(); j++) {
+					std::cout << tempSortActorData[j];
+				}
+				std::cout << "Would you like to edit or modify them? (type yes if so)" << std::endl; // If the user wants to edit their search result as well.
+				getline(std::cin, modDelChoice);
+				if (modDelChoice == "yes")
+					editDeleteRecords();
+
+			}
+			else { // Unsuccessful search
+				std::cout << "Couldn't find any records based on that search parameter." << std::endl;
+			}
+			tempSortActorData.clear(); //Empty the vector once we're done with it.
 			break;
 		case 2: // Search award
 			std::cout << "Please enter the award you'd like to perform an exact search on." << std::endl;
 			getline(std::cin, searchString);
 			for (int i = 0; i < actorData.size(); i++) { // Loop through the actorDatabase vector
-				if (actorData[i].getAward() == searchString) { //Check if any of the fields match the award
-					std::cout << "Found this record: " << std::endl;
-					std::cout << actorData[i];
-					std::cout << "Would you like to delete or modify this record? (type modify or delete)" << std::endl;
-					getline(std::cin, modDelChoice);
-					if (modDelChoice == "modify") {
-						modifyRecordActor(actorData[i]);
-					}
-					else if (modDelChoice == "delete") {
-						actorData.erase(actorData.begin() + i);
-						deleteRecordActor(actorData[i]);
-					}
+				if (actorData[i].getAward() == searchString) { //Check if any of the fields match the name
+					actorData[i].setTempPos(i); // Set the position of the data in the main vector so we can delete it in our delete function.
+					tempSortActorData.push_back(actorData[i]); // Add the data to a temporary vector in case we want to re-search the data.
 				}
 			}
+			if (tempSortActorData.size() != 0) { // If it actually found anything from that search
+				std::cout << "Found these records:" << std::endl;
+				for (int j = 0; j < tempSortActorData.size(); j++) {
+					std::cout << tempSortActorData[j];
+				}
+				std::cout << "Would you like to edit or modify them? (type yes if so)" << std::endl; // If the user wants to edit their search result as well.
+				getline(std::cin, modDelChoice);
+				if (modDelChoice == "yes")
+					editDeleteRecords();
+
+			}
+			else { // Unsuccessful search
+				std::cout << "Couldn't find any records based on that search parameter." << std::endl;
+			}
+			tempSortActorData.clear(); //Empty the vector once we're done with it.
 			break;
 		case 3:
 			std::cout << "Please enter the film you'd like to perform an exact search on." << std::endl;
 			getline(std::cin, searchString);
 			for (int i = 0; i < actorData.size(); i++) { // Loop through the actorDatabase vector
-				if (actorData[i].getFilm() == searchString) { //Check if any of the fields match the award
-					std::cout << "Found this record: " << std::endl;
-					std::cout << actorData[i];
-					std::cout << "Would you like to delete or modify this record? (type modify or delete)" << std::endl;
-					getline(std::cin, modDelChoice);
-					if (modDelChoice == "modify") {
-						modifyRecordActor(actorData[i]);
-					}
-					else if (modDelChoice == "delete") {
-						actorData.erase(actorData.begin() + i);
-						deleteRecordActor(actorData[i]);
-					}
+				if (actorData[i].getFilm() == searchString) { //Check if any of the fields match the name
+					actorData[i].setTempPos(i); // Set the position of the data in the main vector so we can delete it in our delete function.
+					tempSortActorData.push_back(actorData[i]); // Add the data to a temporary vector in case we want to re-search the data.
 				}
 			}
+			if (tempSortActorData.size() != 0) { // If it actually found anything from that search
+				std::cout << "Found these records:" << std::endl;
+				for (int j = 0; j < tempSortActorData.size(); j++) {
+					std::cout << tempSortActorData[j];
+				}
+				std::cout << "Would you like to edit or modify them? (type yes if so)" << std::endl; // If the user wants to edit their search result as well.
+				getline(std::cin, modDelChoice);
+				if (modDelChoice == "yes")
+					editDeleteRecords();
+
+			}
+			else { // Unsuccessful search
+				std::cout << "Couldn't find any records based on that search parameter." << std::endl;
+			}
+			tempSortActorData.clear(); //Empty the vector once we're done with it.
 			break;
 		case 4:
 			std::cout << "Please enter the year you'd like to perform an exact search on." << std::endl;
 			std::cin >> searchYear;
+			std::cin.ignore();
 			for (int i = 0; i < actorData.size(); i++) { // Loop through the actorDatabase vector
-				if (actorData[i].getYear() == searchYear) { //Check if any of the fields match the award
-					std::cout << "Found this record: " << std::endl;
-					std::cout << actorData[i];
-					std::cout << "Would you like to delete or modify this record? (type modify or delete)" << std::endl;
-					getline(std::cin, modDelChoice);
-					if (modDelChoice == "modify") {
-						modifyRecordActor(actorData[i]);
-					}
-					else if (modDelChoice == "delete") {
-						actorData.erase(actorData.begin() + i);
-						deleteRecordActor(actorData[i]);
-					}
+				if (actorData[i].getYear() == searchYear) { //Check if any of the fields match the name
+					actorData[i].setTempPos(i); // Set the position of the data in the main vector so we can delete it in our delete function.
+					tempSortActorData.push_back(actorData[i]); // Add the data to a temporary vector in case we want to re-search the data.
 				}
 			}
+			if (tempSortActorData.size() != 0) { // If it actually found anything from that search
+				std::cout << "Found these records:" << std::endl;
+				for (int j = 0; j < tempSortActorData.size(); j++) {
+					std::cout << tempSortActorData[j];
+				}
+				std::cout << "Would you like to edit or modify them? (type yes if so)" << std::endl; // If the user wants to edit their search result as well.
+				getline(std::cin, modDelChoice);
+				if (modDelChoice == "yes")
+					editDeleteRecords();
+
+			}
+			else { // Unsuccessful search
+				std::cout << "Couldn't find any records based on that search parameter." << std::endl;
+			}
+			tempSortActorData.clear(); //Empty the vector once we're done with it.
 			break;
 		default:
 			break;
@@ -591,71 +621,254 @@ void Menu::deleteRecordActor(Actor a) { //Removes the actor data from the list
 }
 
 void Menu::partialSearchActor(int choice) { // Limiting this to purely string values for now
+	//Just a note, all these cases are identical aside from the fact that they search different parameters
 	std::string searchString;
 	int searchYear;
+	bool continueSearching = true;
 	std::string modDelChoice;
 	//std::cin.ignore();
 	switch (choice) {
 		case 1: //Name
-			std::cout << "Please enter the name you'd like to perform an exact search on." << std::endl;
+			std::cout << "Please enter the name you'd like to perform a partial search on." << std::endl;
 			getline(std::cin, searchString);
 			for (int i = 0; i < actorData.size(); i++) { // Loop through the actorDatabase vector
 				if (actorData[i].getName().find(searchString) != std::string::npos) { //Check if any of the fields match the name
-					std::cout << "Found this record: " << std::endl;
-					std::cout << actorData[i];
-					std::cout << "Would you like to delete or modify this record? (type modify or delete)" << std::endl;
-					getline(std::cin, modDelChoice);
-					if (modDelChoice == "modify") {
-						modifyRecordActor(actorData[i]);
-					}
-					else if (modDelChoice == "delete") {
-						actorData.erase(actorData.begin() + i);
-						deleteRecordActor(actorData[i]);
-					}
+					actorData[i].setTempPos(i); // Set the position of the data in the main vector so we can delete it in our delete function.
+					tempSortActorData.push_back(actorData[i]); // Add the data to a temporary vector in case we want to re-search the data.
 				}
 			}
+			if (tempSortActorData.size() != 0) { // If it actually found anything from that search
+				std::cout << "Found these records:" << std::endl;
+				for (int j = 0; j < tempSortActorData.size(); j++) {
+					std::cout << tempSortActorData[j];
+				}
+				std::cout << "Would you like to edit or modify them? (type yes if so)" << std::endl; // If the user wants to edit their search result as well.
+				getline(std::cin, modDelChoice);
+				if (modDelChoice == "yes")
+					editDeleteRecords();
+
+				std::cout << "Would you like to refine your search? (type yes if so)" << std::endl;
+				getline(std::cin, modDelChoice);
+				if (modDelChoice == "yes") {
+					while (continueSearching) { //While the user wants to keep refining their search
+						//This loop is exactly the same as the before code, except now it acts on the smaller refined data from the search
+						std::vector<Actor> refinedSearch = tempSortActorData; //Here we just store the previous search into another vector and then clear it so we stick the new search results into it
+						tempSortActorData.clear();
+
+						continueSearching = false;
+						std::cout << "Please enter the name you'd like to perform a partial search on." << std::endl;
+						getline(std::cin, searchString);
+						for (int i = 0; i < refinedSearch.size(); i++) { // Loop through the new refined search vector
+							if (refinedSearch[i].getName().find(searchString) != std::string::npos) { //Check if any of the fields match the name
+								refinedSearch[i].setTempPos(i); // Set the position of the data in the main vector so we can delete it in our delete function.
+								tempSortActorData.push_back(refinedSearch[i]); // Add the data to a temporary vector in case we want to re-search the data.
+							}
+						}
+						if (tempSortActorData.size() != 0) { // If it actually found anything from that search
+							std::cout << "Found these records:" << std::endl;
+							for (int j = 0; j < tempSortActorData.size(); j++) {
+								std::cout << tempSortActorData[j];
+							}
+							std::cout << "Would you like to edit or modify them? (type yes if so)" << std::endl; // If the user wants to edit their search result as well.
+							getline(std::cin, modDelChoice);
+							if (modDelChoice == "yes")
+								editDeleteRecords();
+
+							std::cout << "Would you like to refine your search? (type yes if so)" << std::endl;
+							getline(std::cin, modDelChoice);
+							if (modDelChoice == "yes") { //Flag which will let the searching continue
+								continueSearching = true;
+							}
+
+						}
+						else { // Unsuccessful search
+							std::cout << "Couldn't find any records based on that search parameter." << std::endl;
+						}
+					}
+				}
+
+			}
+			else { // Unsuccessful search
+				std::cout << "Couldn't find any records based on that search parameter." << std::endl;
+			}
+			tempSortActorData.clear(); //Empty the vector once we're done with it.
 			break;
 		case 2: // Search award
-			std::cout << "Please enter the award you'd like to perform an exact search on." << std::endl;
+			std::cout << "Please enter the award you'd like to perform a partial search on." << std::endl;
 			getline(std::cin, searchString);
 			for (int i = 0; i < actorData.size(); i++) { // Loop through the actorDatabase vector
-				if (actorData[i].getAward().find(searchString) != std::string::npos) { //Check if any of the fields match the award
-					std::cout << "Found this record: " << std::endl;
-					std::cout << actorData[i];
-					std::cout << "Would you like to delete or modify this record? (type modify or delete)" << std::endl;
-					getline(std::cin, modDelChoice);
-					if (modDelChoice == "modify") {
-						modifyRecordActor(actorData[i]);
-					}
-					else if (modDelChoice == "delete") {
-						actorData.erase(actorData.begin() + i);
-						deleteRecordActor(actorData[i]);
-					}
+				if (actorData[i].getAward().find(searchString) != std::string::npos) { //Check if any of the fields match the name
+					actorData[i].setTempPos(i); // Set the position of the data in the main vector so we can delete it in our delete function.
+					tempSortActorData.push_back(actorData[i]); // Add the data to a temporary vector in case we want to re-search the data.
 				}
 			}
+			if (tempSortActorData.size() != 0) { // If it actually found anything from that search
+				std::cout << "Found these records:" << std::endl;
+				for (int j = 0; j < tempSortActorData.size(); j++) {
+					std::cout << tempSortActorData[j];
+				}
+				std::cout << "Would you like to edit or modify them? (type yes if so)" << std::endl; // If the user wants to edit their search result as well.
+				getline(std::cin, modDelChoice);
+				if (modDelChoice == "yes")
+					editDeleteRecords();
+
+				std::cout << "Would you like to refine your search? (type yes if so)" << std::endl;
+				getline(std::cin, modDelChoice);
+				if (modDelChoice == "yes") {
+					while (continueSearching) { //While the user wants to keep refining their search
+												//This loop is exactly the same as the before code, except now it acts on the smaller refined data from the search
+						std::vector<Actor> refinedSearch = tempSortActorData; //Here we just store the previous search into another vector and then clear it so we stick the new search results into it
+						tempSortActorData.clear();
+
+						continueSearching = false;
+						std::cout << "Please enter the award you'd like to perform a partial search on." << std::endl;
+						getline(std::cin, searchString);
+						for (int i = 0; i < refinedSearch.size(); i++) { // Loop through the new refined search vector
+							if (refinedSearch[i].getAward().find(searchString) != std::string::npos) { //Check if any of the fields match the name
+								refinedSearch[i].setTempPos(i); // Set the position of the data in the main vector so we can delete it in our delete function.
+								tempSortActorData.push_back(refinedSearch[i]); // Add the data to a temporary vector in case we want to re-search the data.
+							}
+						}
+						if (tempSortActorData.size() != 0) { // If it actually found anything from that search
+							std::cout << "Found these records:" << std::endl;
+							for (int j = 0; j < tempSortActorData.size(); j++) {
+								std::cout << tempSortActorData[j];
+							}
+							std::cout << "Would you like to edit or modify them? (type yes if so)" << std::endl; // If the user wants to edit their search result as well.
+							getline(std::cin, modDelChoice);
+							if (modDelChoice == "yes")
+								editDeleteRecords();
+
+							std::cout << "Would you like to refine your search? (type yes if so)" << std::endl;
+							getline(std::cin, modDelChoice);
+							if (modDelChoice == "yes") { //Flag which will let the searching continue
+								continueSearching = true;
+							}
+
+						}
+						else { // Unsuccessful search
+							std::cout << "Couldn't find any records based on that search parameter." << std::endl;
+						}
+					}
+				}
+
+			}
+			else { // Unsuccessful search
+				std::cout << "Couldn't find any records based on that search parameter." << std::endl;
+			}
+			tempSortActorData.clear(); //Empty the vector once we're done with it.
 			break;
 		case 3:
-			std::cout << "Please enter the film you'd like to perform an exact search on." << std::endl;
+			std::cout << "Please enter the film you'd like to perform a partial search on." << std::endl;
 			getline(std::cin, searchString);
 			for (int i = 0; i < actorData.size(); i++) { // Loop through the actorDatabase vector
-				if (actorData[i].getFilm().find(searchString) != std::string::npos) { //Check if any of the fields match the award
-					std::cout << "Found this record: " << std::endl;
-					std::cout << actorData[i];
-					std::cout << "Would you like to delete or modify this record? (type modify or delete)" << std::endl;
-					getline(std::cin, modDelChoice);
-					if (modDelChoice == "modify") {
-						modifyRecordActor(actorData[i]);
-					}
-					else if (modDelChoice == "delete") {
-						actorData.erase(actorData.begin() + i);
-						deleteRecordActor(actorData[i]);
-					}
+				if (actorData[i].getFilm().find(searchString) != std::string::npos) { //Check if any of the fields match the name
+					actorData[i].setTempPos(i); // Set the position of the data in the main vector so we can delete it in our delete function.
+					tempSortActorData.push_back(actorData[i]); // Add the data to a temporary vector in case we want to re-search the data.
 				}
 			}
+			if (tempSortActorData.size() != 0) { // If it actually found anything from that search
+				std::cout << "Found these records:" << std::endl;
+				for (int j = 0; j < tempSortActorData.size(); j++) {
+					std::cout << tempSortActorData[j];
+				}
+				std::cout << "Would you like to edit or modify them? (type yes if so)" << std::endl; // If the user wants to edit their search result as well.
+				getline(std::cin, modDelChoice);
+				if (modDelChoice == "yes")
+					editDeleteRecords();
+
+				std::cout << "Would you like to refine your search? (type yes if so)" << std::endl;
+				getline(std::cin, modDelChoice);
+				if (modDelChoice == "yes") {
+					while (continueSearching) { //While the user wants to keep refining their search
+												//This loop is exactly the same as the before code, except now it acts on the smaller refined data from the search
+						std::vector<Actor> refinedSearch = tempSortActorData; //Here we just store the previous search into another vector and then clear it so we stick the new search results into it
+						tempSortActorData.clear();
+
+						continueSearching = false;
+						std::cout << "Please enter the film you'd like to perform a partial search on." << std::endl;
+						getline(std::cin, searchString);
+						for (int i = 0; i < refinedSearch.size(); i++) { // Loop through the new refined search vector
+							if (refinedSearch[i].getFilm().find(searchString) != std::string::npos) { //Check if any of the fields match the name
+								refinedSearch[i].setTempPos(i); // Set the position of the data in the main vector so we can delete it in our delete function.
+								tempSortActorData.push_back(refinedSearch[i]); // Add the data to a temporary vector in case we want to re-search the data.
+							}
+						}
+						if (tempSortActorData.size() != 0) { // If it actually found anything from that search
+							std::cout << "Found these records:" << std::endl;
+							for (int j = 0; j < tempSortActorData.size(); j++) {
+								std::cout << tempSortActorData[j];
+							}
+							std::cout << "Would you like to edit or modify them? (type yes if so)" << std::endl; // If the user wants to edit their search result as well.
+							getline(std::cin, modDelChoice);
+							if (modDelChoice == "yes")
+								editDeleteRecords();
+
+							std::cout << "Would you like to refine your search? (type yes if so)" << std::endl;
+							getline(std::cin, modDelChoice);
+							if (modDelChoice == "yes") { //Flag which will let the searching continue
+								continueSearching = true;
+							}
+
+						}
+						else { // Unsuccessful search
+							std::cout << "Couldn't find any records based on that search parameter." << std::endl;
+						}
+					}
+				}
+
+			}
+			else { // Unsuccessful search
+				std::cout << "Couldn't find any records based on that search parameter." << std::endl;
+			}
+			tempSortActorData.clear(); //Empty the vector once we're done with it.
 			break;
 		default:
 			break;
 	}
+}
+
+void Menu::editDeleteRecords() { 
+	std::string modDelChoice, quitChoice;
+	for (int i = 0; i < tempSortActorData.size(); i++) {
+		//Loops through all the records that the user found in their last search
+		std::cout << "Found this record: " << std::endl;
+		std::cout << tempSortActorData[i];
+		std::cout << "Would you like to delete or modify this record? (type modify or delete)" << std::endl;
+		//They get given the optoin to modify or delete each one based on what they choose
+		getline(std::cin, modDelChoice);
+		if (modDelChoice == "modify") {
+			modifyRecordActor(tempSortActorData[i]);
+		}
+		else if (modDelChoice == "delete") {
+			actorData.erase(actorData.begin() + tempSortActorData[i].getTempPos()); //Firstly erase it from the main vector that stores all the data
+			deleteRecordActor(tempSortActorData[i]); //Lastly delete it from the tree that's currently being used
+		}
+
+		//If they don't want to keep going through the list, they can stop at any time
+		std::cout << "Would you like to continue editing records? (type yes if so)" << std::endl;
+		getline(std::cin, quitChoice);
+		if (quitChoice != "yes") {
+			break;
+		}
+	}
+}
+
+void Menu::sortTreeMovie() {
+	//Ask for which key the user would like to sort the tree by.
+	std::cout << "Which parameter would you like to sort the movie tree by?" << std::endl;
+	std::cout << "1. Name" << std::endl;
+	std::cout << "2. Year" << std::endl;
+	std::cout << "3. Nominations" << std::endl;
+	std::cout << "4. Rating" << std::endl;
+	std::cout << "5. Duration" << std::endl;
+	std::cout << "6. Genre 1" << std::endl;
+	std::cout << "7. Genre 2" << std::endl;
+	std::cout << "8. Release" << std::endl;
+	std::cout << "9. Metacritic Score" << std::endl;
+	std::cout << "10. Synopsis" << std::endl;
+	int selection = 0;
+	std::cin >> selection;
 }
 
 

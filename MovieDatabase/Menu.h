@@ -36,11 +36,13 @@ public:
 	void addRecordMovies();
 	bool searchActor();
 	void sortTreeActor();
+	void sortTreeMovie();
 	void exactSearchActor(int choice);
 	void partialSearchActor(int choice);
 	void modifyRecordActor(Actor &a);
 	void deleteRecordActor(Actor a);
 	void deleteCurrentTree();
+	void editDeleteRecords();
 };
 
 #endif

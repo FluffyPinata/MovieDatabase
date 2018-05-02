@@ -6,6 +6,7 @@ Actor::Actor() {
 	film = "";
 	award = "";
 	winner = false;
+	tempPosition = -1;
 }
 
 Actor::Actor(int _year, std::string _name, std::string _award, std::string _film, bool _winner) {
@@ -14,6 +15,7 @@ Actor::Actor(int _year, std::string _name, std::string _award, std::string _film
 	film = _film;
 	award = _award;
 	winner = _winner;
+	tempPosition = -1;
 }
 
 std::ostream& operator<<(std::ostream& os, const Actor& a) {

@@ -6,7 +6,7 @@
 
 class Actor {
 private:
-	int year;
+	int year, tempPosition;
 	std::string award, name, film;
 	bool winner;
 public:
@@ -22,6 +22,8 @@ public:
 	void setFilm(std::string _film) { film = _film; }
 	bool getWinner() { return winner; }
 	void setWinner(bool _winner) { winner = _winner; }
+	int getTempPos() { return tempPosition; }
+	void setTempPos(int _tempPos) { tempPosition = _tempPos; }
 	friend std::ostream& operator<<(std::ostream& os, const Actor& a);
 };
 
