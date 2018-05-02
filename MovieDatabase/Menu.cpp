@@ -325,7 +325,7 @@ void Menu::addRecordMovies() {
 }
 
 bool Menu::searchActor() { 
-	std::cin.ignore();
+	//std::cin.ignore();
 	int fieldChoice = 0;
 	std::cout << "Which field would you like to search? (type the number)" << std::endl;
 	std::cout << "1. Name" << std::endl;
@@ -335,7 +335,17 @@ bool Menu::searchActor() {
 
 
 	std::cin >> fieldChoice;
-	exactSearchActor(fieldChoice);
+
+	std::cout << "Would you like to perform a partial or exact search?" << std::endl;
+	std::string searchChoice;
+	std::cin.ignore();
+	getline(std::cin, searchChoice);
+	if (searchChoice == "partial") {
+		partialSearchActor(fieldChoice);
+	}
+	else if (searchChoice == "exact") {
+		exactSearchActor(fieldChoice);
+	}
 
 	//std::cout << "What would you like to search for?" << std::endl;
 	return true;
@@ -415,9 +425,10 @@ void Menu::deleteCurrentTree() { //picks the current stored tree and deletes it
 
 void Menu::exactSearchActor(int choice) {
 	std::string searchString;
+	bool keepSearching = false;
 	int searchYear;
 	std::string modDelChoice;
-	//std::cin.ignore();
+	std::cin.ignore();
 	switch (choice) {
 		case 1: //Name
 			std::cout << "Please enter the name you'd like to perform an exact search on." << std::endl;
@@ -579,8 +590,72 @@ void Menu::deleteRecordActor(Actor a) { //Removes the actor data from the list
 	}
 }
 
-bool Menu::isContained() {
-	return true;
+void Menu::partialSearchActor(int choice) { // Limiting this to purely string values for now
+	std::string searchString;
+	int searchYear;
+	std::string modDelChoice;
+	//std::cin.ignore();
+	switch (choice) {
+		case 1: //Name
+			std::cout << "Please enter the name you'd like to perform an exact search on." << std::endl;
+			getline(std::cin, searchString);
+			for (int i = 0; i < actorData.size(); i++) { // Loop through the actorDatabase vector
+				if (actorData[i].getName().find(searchString) != std::string::npos) { //Check if any of the fields match the name
+					std::cout << "Found this record: " << std::endl;
+					std::cout << actorData[i];
+					std::cout << "Would you like to delete or modify this record? (type modify or delete)" << std::endl;
+					getline(std::cin, modDelChoice);
+					if (modDelChoice == "modify") {
+						modifyRecordActor(actorData[i]);
+					}
+					else if (modDelChoice == "delete") {
+						actorData.erase(actorData.begin() + i);
+						deleteRecordActor(actorData[i]);
+					}
+				}
+			}
+			break;
+		case 2: // Search award
+			std::cout << "Please enter the award you'd like to perform an exact search on." << std::endl;
+			getline(std::cin, searchString);
+			for (int i = 0; i < actorData.size(); i++) { // Loop through the actorDatabase vector
+				if (actorData[i].getAward().find(searchString) != std::string::npos) { //Check if any of the fields match the award
+					std::cout << "Found this record: " << std::endl;
+					std::cout << actorData[i];
+					std::cout << "Would you like to delete or modify this record? (type modify or delete)" << std::endl;
+					getline(std::cin, modDelChoice);
+					if (modDelChoice == "modify") {
+						modifyRecordActor(actorData[i]);
+					}
+					else if (modDelChoice == "delete") {
+						actorData.erase(actorData.begin() + i);
+						deleteRecordActor(actorData[i]);
+					}
+				}
+			}
+			break;
+		case 3:
+			std::cout << "Please enter the film you'd like to perform an exact search on." << std::endl;
+			getline(std::cin, searchString);
+			for (int i = 0; i < actorData.size(); i++) { // Loop through the actorDatabase vector
+				if (actorData[i].getFilm().find(searchString) != std::string::npos) { //Check if any of the fields match the award
+					std::cout << "Found this record: " << std::endl;
+					std::cout << actorData[i];
+					std::cout << "Would you like to delete or modify this record? (type modify or delete)" << std::endl;
+					getline(std::cin, modDelChoice);
+					if (modDelChoice == "modify") {
+						modifyRecordActor(actorData[i]);
+					}
+					else if (modDelChoice == "delete") {
+						actorData.erase(actorData.begin() + i);
+						deleteRecordActor(actorData[i]);
+					}
+				}
+			}
+			break;
+		default:
+			break;
+	}
 }
 
 

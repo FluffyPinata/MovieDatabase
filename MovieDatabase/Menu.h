@@ -15,6 +15,7 @@ private:
 	currentTreeActor cTa = actName; //used for selecting which tree to operate on after a potential sort
 	currentTreeMovie cTm = movName;
 	std::vector<Actor> actorData;
+	std::vector<Actor> tempSortActorData;
 	std::vector<Movie> movieData;
 	//Different trees used for sorting
 	BSTree<Actor, string> *actorTree;
@@ -36,8 +37,7 @@ public:
 	bool searchActor();
 	void sortTreeActor();
 	void exactSearchActor(int choice);
-	void partialSearchActor();
-	bool isContained();
+	void partialSearchActor(int choice);
 	void modifyRecordActor(Actor &a);
 	void deleteRecordActor(Actor a);
 	void deleteCurrentTree();
