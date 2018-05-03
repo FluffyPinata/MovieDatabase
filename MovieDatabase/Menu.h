@@ -41,7 +41,8 @@ public:
 	void partialSearchActor(int choice);
 	void modifyRecordActor(Actor &a);
 	void deleteRecordActor(Actor a);
-	void deleteCurrentTree();
+	void deleteCurrentTree(); //Actors
+	void deleteCurrentTreeMovie(); //Movies
 	void editDeleteRecords();
 };
 

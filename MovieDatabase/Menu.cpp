@@ -867,8 +867,99 @@ void Menu::sortTreeMovie() {
 	std::cout << "8. Release" << std::endl;
 	std::cout << "9. Metacritic Score" << std::endl;
 	std::cout << "10. Synopsis" << std::endl;
+
 	int selection = 0;
 	std::cin >> selection;
+
+	switch (selection) {
+	case 1:
+		deleteCurrentTreeMovie();
+		cTm = movName;
+		for (int i = 0; i < movieData.size(); i++) {
+			movieTree->addNode(movieData[i].getName(), movieData[i]);
+		}
+		break;
+	case 2:
+		deleteCurrentTreeMovie();
+		cTm = movYear;
+		for (int i = 0; i < movieData.size(); i++) {
+			movieTreeInt->addNode(movieData[i].getYear(), movieData[i]);
+		}
+		break;
+	case 3:
+		deleteCurrentTreeMovie();
+		cTm = movNominations;
+		for (int i = 0; i < movieData.size(); i++) {
+			movieTreeInt->addNode(movieData[i].getNominations(), movieData[i]);
+		}
+		break;
+	case 4:
+		deleteCurrentTreeMovie();
+		cTm = movRating;
+		for (int i = 0; i < movieData.size(); i++) {
+			movieTreeDouble->addNode(movieData[i].getRating(), movieData[i]);
+		}
+		break;
+	case 5:
+		deleteCurrentTreeMovie();
+		cTm = movDuration;
+		for (int i = 0; i < movieData.size(); i++) {
+			movieTreeInt->addNode(movieData[i].getDuration(), movieData[i]);
+		}
+		break;
+	case 6:
+		deleteCurrentTreeMovie();
+		cTm = movGenre1;
+		for (int i = 0; i < movieData.size(); i++) {
+			movieTree->addNode(movieData[i].getGenre1(), movieData[i]);
+		}
+		break;
+	case 7:
+		deleteCurrentTreeMovie();
+		cTm = movGenre2;
+		for (int i = 0; i < movieData.size(); i++) {
+			movieTree->addNode(movieData[i].getGenre2(), movieData[i]);
+		}
+		break;
+	case 8:
+		deleteCurrentTreeMovie();
+		cTm = movRelease;
+		for (int i = 0; i < movieData.size(); i++) {
+			movieTree->addNode(movieData[i].getRelease(), movieData[i]);
+		}
+		break;
+	case 9:
+		deleteCurrentTreeMovie();
+		cTm = movMetacritic;
+		for (int i = 0; i < movieData.size(); i++) {
+			movieTreeInt->addNode(movieData[i].getMetacritic(), movieData[i]);
+		}
+		break;
+	case 10:
+		deleteCurrentTreeMovie();
+		cTm = movSynopsis;
+		for (int i = 0; i < movieData.size(); i++) {
+			movieTree->addNode(movieData[i].getSynopsis(), movieData[i]);
+		}
+		break;
+	default:
+		break;
+	}
+}
+
+void Menu::deleteCurrentTreeMovie() { //picks the current stored tree and deletes it
+	if ((cTm == movName) || (cTm == movGenre1) || (cTm == movGenre2) || (cTm == movRelease) || (cTm == movSynopsis)) {
+		delete movieTree;
+		movieTree = new BSTree<Movie, string>();
+	}
+	else if ((cTm == movYear) || (cTm == movNominations) || (cTm == movDuration) || (cTm == movMetacritic)) {
+		delete movieTreeInt;
+		movieTreeInt = new BSTree<Movie, int>();
+	}
+	else {
+		delete movieTreeDouble;
+		movieTreeDouble = new BSTree<Movie, double>();
+	}
 }
 
 
