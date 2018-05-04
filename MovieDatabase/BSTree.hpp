@@ -8,6 +8,8 @@ but do NOT compile it (or add it to the project)*/
 #include <fstream>
 #include <iostream>
 
+//Created by Gabriel Jones
+
 // Constructor
 template <typename DATATYPE, typename KEYTYPE>
 BSTree<DATATYPE, KEYTYPE>::BSTree() {
@@ -27,6 +29,7 @@ void BSTree<DATATYPE, KEYTYPE>::freeNode(Node<DATATYPE, KEYTYPE> * leaf)
 {
 	//Student must fill in
 	if (leaf != nullptr) {
+		//Recursively dives down left and right subtrees, deleting the nodes until it reaches nullptr
 		freeNode(leaf->Left());
 		freeNode(leaf->Right());
 
@@ -271,7 +274,7 @@ void BSTree<DATATYPE, KEYTYPE>::writeToFile(std::ofstream &outfile, Node<DATATYP
 		return;
 	}
 	writeToFile(outfile, node->Left()); //Dive down the left side of the tree first since those are the lowest values
-	outfile << node->Data();
+	outfile << node->Data(); //Print data to the file
 	writeToFile(outfile, node->Right()); //Dive down the right side last since they're the largest values
 }
 

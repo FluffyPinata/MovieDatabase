@@ -4,9 +4,13 @@
 #include <iostream>
 #include <string>
 
+//Created by Gabriel Jones
+
+//Actor is pretty much just a fancy struct. It stores data from actor-actress and has getters and setters.
+
 class Actor {
 private:
-	int year, tempPosition;
+	int year, tempPosition; //Temp pos is used for whenever you need to delete the data from the actor vector
 	std::string award, name, film;
 	bool winner;
 public:

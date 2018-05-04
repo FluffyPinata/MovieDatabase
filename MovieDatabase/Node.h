@@ -1,6 +1,8 @@
 //To be used in conjunction with BSTree.h and BSTree.hpp
 //If you modify this, please add your name and list any changes that you made
 
+// Created by Gabriel Jones
+
 //changed KEY to have type KEYTYPE not int
 #ifndef NODE_
 #define NODE_

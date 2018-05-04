@@ -1,12 +1,15 @@
 #ifndef MOVIE_H
 #define MOVIE_H
 
+//Created by Gabriel Jones
+
 #include <string>
 
+//Again just a fancy struct. Stores all data about a movie from pictures.csv. Complete with getters and setters.
 class Movie {
 private:
 	std::string name, genre1, genre2, release, synopsis;
-	int year, nominations, duration, metacritic;
+	int year, nominations, duration, metacritic, tempPos;
 	double rating;
 public:
 	Movie();
@@ -30,6 +33,8 @@ public:
 	void setDuration(int _duration) { duration = _duration; }
 	int getMetacritic() { return metacritic; }
 	void setMetacritic(int _metacritic) { metacritic = _metacritic; }
+	int getTempPos() { return tempPos; }
+	void setTempPos(int _tempPos) { tempPos = _tempPos; }
 
 	double getRating() { return rating; }
 	void setRating(double _rating) { rating = _rating; }

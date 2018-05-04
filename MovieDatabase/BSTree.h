@@ -6,6 +6,10 @@
 using namespace std;
 #include "Node.h"
 
+//Created by Gabriel Jones
+//Only modification was to create a write to file function, which operates almost indentically to print in order.
+//Instead it just writes the data it finds to a file.
+
 // Binary Search Tree class
 template <typename DATATYPE, typename KEYTYPE>
 class BSTree {
